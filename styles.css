@@ -152,24 +152,48 @@ h3 { font-variation-settings: var(--large); font-weight: 700; font-size: 1.3rem;
   padding: calc(var(--coupe) + clamp(3rem, 7vw, 6rem)) 0 calc(var(--coupe) + clamp(3rem, 7vw, 6rem));
   clip-path: polygon(0 0, 100% var(--coupe), 100% 100%, 0 100%);
 }
-.realisation {
-  display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
-  gap: 2.5rem clamp(2rem, 5vw, 5rem); align-items: center;
+.realisations h2 { max-width: 22ch; }
+
+/* Le site du client, présenté dans une fenêtre et sur un téléphone */
+.vitrine {
+  display: block; position: relative;
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  padding: 0 clamp(1.5rem, 9%, 7rem) clamp(1.5rem, 4%, 3rem) 0;
 }
-.apercu {
-  display: block; background: var(--encre); padding: .6rem;
-  clip-path: polygon(0 0, calc(100% - 2rem) 0, 100% 2rem, 100% 100%, 2rem 100%, 0 calc(100% - 2rem));
+.vitrine img { display: block; width: 100%; height: auto; }
+.ecran {
+  background: var(--encre); border-radius: .9rem; padding: 0 .45rem .45rem;
+  box-shadow: 0 2.5rem 5rem -1.5rem rgba(28, 27, 16, .55);
+  transition: transform .35s cubic-bezier(.2, .8, .2, 1);
 }
-.apercu:focus-visible { clip-path: none; }
-.apercu img {
-  display: block; width: 100%; height: auto;
-  aspect-ratio: 16 / 10; object-fit: cover; object-position: top;
-  transition: transform .4s;
+.ecran img { border-radius: 0 0 .5rem .5rem; }
+.ecran-barre { display: flex; align-items: center; gap: .4rem; padding: .7rem .5rem; }
+.ecran-barre span { width: .6rem; height: .6rem; border-radius: 50%; background: var(--mousse); }
+.ecran-barre b {
+  margin-left: .8rem; padding: .2rem .9rem; border-radius: 1rem;
+  background: var(--mousse); color: var(--sauge-claire);
+  font-weight: 500; font-size: .8rem;
 }
-.apercu:hover img { transform: scale(1.03); }
-.realisation h3 { margin-top: 1.75rem; }
-.realisation p { margin-top: .75rem; max-width: 32em; }
-.realisation .lien { display: inline-block; margin-top: 1.5rem; }
+.telephone {
+  position: absolute; right: 0; bottom: 0; width: 21%;
+  background: var(--encre); border-radius: clamp(.8rem, 2.2vw, 2rem); padding: clamp(.25rem, .6vw, .5rem);
+  box-shadow: 0 2rem 4rem -1rem rgba(28, 27, 16, .65);
+  transition: transform .35s cubic-bezier(.2, .8, .2, 1);
+}
+.telephone img { border-radius: clamp(.6rem, 1.7vw, 1.55rem); }
+.vitrine:hover .ecran { transform: translateY(-.35rem); }
+.vitrine:hover .telephone { transform: translateY(-.8rem); }
+
+.fiche {
+  display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 2rem clamp(2rem, 6vw, 6rem); align-items: start;
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+.fiche h3 { font-size: clamp(1.3rem, 2vw, 1.7rem); font-weight: 800; }
+.fiche p { margin-top: .9rem; max-width: 34em; }
+.fiche .bouton { margin-top: 1.75rem; }
+.fiche ul { border-top: 2px solid var(--encre); }
+.fiche li { padding: .85rem 0; border-bottom: 2px solid var(--encre); font-weight: 600; }
 
 /* ---------- Méthode (os) ---------- */
 .methode {
@@ -276,7 +300,7 @@ form .bouton { justify-self: start; }
   .hero-zn { max-width: 30rem; order: -1; }
   .hero h1 { max-width: 14ch; }
   .etapes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .questions-grille, .contact-grille, .inclus, .realisation { grid-template-columns: 1fr; }
+  .questions-grille, .contact-grille, .inclus, .fiche { grid-template-columns: 1fr; }
   .inclus h3 { max-width: none; }
 }
 @media (max-width: 44rem) {
@@ -292,5 +316,5 @@ form .bouton { justify-self: start; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .hero-zn polygon { animation: none; }
-  .faq summary::after, .bouton, .apercu img { transition: none; }
+  .faq summary::after, .bouton, .ecran, .telephone { transition: none; }
 }
