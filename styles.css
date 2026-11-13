@@ -332,12 +332,6 @@ body::before {
 /* Relief */
 .entete { transition: box-shadow .25s; }
 .entete.defilee { box-shadow: 0 .7rem 1.6rem -1rem rgba(28, 27, 16, .65); }
-.hero-zn { filter: drop-shadow(.8rem .8rem 0 rgba(28, 27, 16, .12)); }
-
-/* Références, en petit sous l'accueil */
-.references { margin-top: 2rem; font-size: .9rem; color: var(--mousse); }
-.references a, .references span { font-weight: 600; color: var(--encre); }
-.references a { text-underline-offset: .2em; }
 
 /* Titres dévoilés par une coupe diagonale */
 .js main h2 > .coupe {
@@ -346,15 +340,6 @@ body::before {
   transition: clip-path 1s cubic-bezier(.2, .8, .2, 1);
 }
 .js main h2.vu > .coupe { clip-path: polygon(0 -10%, 115% -10%, 100% 115%, 0 115%); }
-
-/* Monogramme qui réagit à la souris, une fois assemblé */
-.hero-zn.pret polygon { animation: none; transition: transform .6s cubic-bezier(.2, .8, .2, 1); }
-.hero-zn.pret.actif polygon {
-  transition-duration: .25s;
-  transform: translate(
-    calc(var(--dx) * .07 + var(--mx, 0) * var(--p) * 1px),
-    calc(var(--dy) * .07 + var(--my, 0) * var(--p) * 1px));
-}
 
 /* Boutons : balayage diagonal au survol */
 .bouton-encre, .bouton-encre:hover { background: linear-gradient(115deg, var(--mousse) 50%, var(--encre) 50.1%) 100% 0 / 260% 100%; }

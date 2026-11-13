@@ -87,19 +87,6 @@ if ("IntersectionObserver" in window && !calme) {
 }
 
 if (!calme) {
-  // Monogramme : les pièces s'écartent et suivent la souris
-  const hero = document.querySelector(".hero");
-  const zn = document.querySelector(".hero-zn");
-  zn.lastElementChild.addEventListener("animationend", () => zn.classList.add("pret"));
-  hero.addEventListener("pointermove", (e) => {
-    if (e.pointerType !== "mouse") return;
-    const r = zn.getBoundingClientRect();
-    zn.style.setProperty("--mx", borne((e.clientX - (r.left + r.width / 2)) / r.width, -1, 1));
-    zn.style.setProperty("--my", borne((e.clientY - (r.top + r.height / 2)) / r.height, -1, 1));
-    zn.classList.add("actif");
-  });
-  hero.addEventListener("pointerleave", () => zn.classList.remove("actif"));
-
   // Fenêtre du client : inclinaison selon la souris, défilement au survol
   const vitrine = document.querySelector(".vitrine");
   vitrine.addEventListener("pointermove", (e) => {
