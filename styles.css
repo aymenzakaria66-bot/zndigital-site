@@ -318,3 +318,99 @@ form .bouton { justify-self: start; }
   .hero-zn polygon { animation: none; }
   .faq summary::after, .bouton, .ecran, .telephone { transition: none; }
 }
+
+/* =====================================================================
+   Effets et relief
+   ===================================================================== */
+
+/* Grain de papier sur tout le site */
+body::before {
+  content: ""; position: fixed; inset: 0; z-index: 30; pointer-events: none; opacity: .16;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .9 0 0 0 -.25'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+}
+
+/* Relief */
+.entete { transition: box-shadow .25s; }
+.entete.defilee { box-shadow: 0 .7rem 1.6rem -1rem rgba(28, 27, 16, .65); }
+.hero-zn { filter: drop-shadow(.8rem .8rem 0 rgba(28, 27, 16, .12)); }
+
+/* Références, en petit sous l'accueil */
+.references { margin-top: 2rem; font-size: .9rem; color: var(--mousse); }
+.references a, .references span { font-weight: 600; color: var(--encre); }
+.references a { text-underline-offset: .2em; }
+
+/* Titres dévoilés par une coupe diagonale */
+.js main h2 > .coupe {
+  display: block;
+  clip-path: polygon(0 -10%, 0 -10%, -15% 115%, 0 115%);
+  transition: clip-path 1s cubic-bezier(.2, .8, .2, 1);
+}
+.js main h2.vu > .coupe { clip-path: polygon(0 -10%, 115% -10%, 100% 115%, 0 115%); }
+
+/* Monogramme qui réagit à la souris, une fois assemblé */
+.hero-zn.pret polygon { animation: none; transition: transform .6s cubic-bezier(.2, .8, .2, 1); }
+.hero-zn.pret.actif polygon {
+  transition-duration: .25s;
+  transform: translate(
+    calc(var(--dx) * .07 + var(--mx, 0) * var(--p) * 1px),
+    calc(var(--dy) * .07 + var(--my, 0) * var(--p) * 1px));
+}
+
+/* Boutons : balayage diagonal au survol */
+.bouton-encre, .bouton-encre:hover { background: linear-gradient(115deg, var(--mousse) 50%, var(--encre) 50.1%) 100% 0 / 260% 100%; }
+.bouton-os, .bouton-os:hover { background: linear-gradient(115deg, var(--sauge-claire) 50%, var(--os) 50.1%) 100% 0 / 260% 100%; }
+.bouton { transition: background-position .45s cubic-bezier(.2, .8, .2, 1); }
+.bouton.bouton:hover { background-position: 0 0; }
+
+/* Lignes de services : décalage et marque en coupe au survol */
+.offres h3 { position: relative; transition: transform .3s cubic-bezier(.2, .8, .2, 1); }
+.offres h3::before {
+  content: ""; position: absolute; left: -1.9rem; top: .28em;
+  width: 1.1rem; height: .75em; background: var(--sauge);
+  clip-path: polygon(40% 0, 100% 0, 60% 100%, 0 100%);
+  opacity: 0; transition: opacity .3s;
+}
+@media (hover: hover) {
+  .offres li:hover h3 { transform: translateX(1.9rem); }
+  .offres li:hover h3::before { opacity: 1; }
+}
+
+/* Fragments du monogramme en fond des sections sombres */
+.services, .contact { position: relative; overflow: clip; }
+.services > .contenant, .contact > .contenant { position: relative; z-index: 1; }
+.fragment {
+  position: absolute; right: -12%; bottom: 4%; width: min(78rem, 95vw); height: auto;
+  fill: #26251a; pointer-events: none;
+  transform: translateY(var(--par, 0px)) rotate(-7deg);
+}
+.fragment-gauche { right: auto; left: -18%; bottom: auto; top: 18%; transform: translateY(var(--par, 0px)) rotate(6deg); }
+
+/* Fenêtre du client : inclinaison 3D et défilement de la page */
+.vitrine { perspective: 1600px; }
+.ecran-vue { aspect-ratio: 16 / 10; overflow: hidden; border-radius: 0 0 .5rem .5rem; }
+.ecran .ecran-page img { border-radius: 0; }
+.ecran-page { transition: transform 1.2s cubic-bezier(.3, 0, .2, 1); }
+.vitrine.defile .ecran-page { transform: translateY(-80%); transition: transform 14s linear; }
+.ecran, .vitrine:hover .ecran {
+  transform: rotateX(calc(var(--rx, 0) * 1deg)) rotateY(calc(var(--ry, 0) * 1deg));
+}
+.telephone, .vitrine:hover .telephone {
+  transform: translate(calc(var(--ry, 0) * -3px), calc(var(--rx, 0) * 3px));
+}
+
+/* Étapes : la ligne se trace et les chiffres se remplissent au défilement */
+.etapes li { position: relative; border-top-color: var(--sauge-claire); --f: 1; }
+.js .etapes li { --f: 0; }
+.etapes li::after {
+  content: ""; position: absolute; left: 0; top: -3px; width: 100%; height: 3px;
+  background: var(--encre); transform: scaleX(var(--f)); transform-origin: left;
+}
+.etapes li::before { color: color-mix(in srgb, var(--encre) calc(var(--f) * 100%), var(--sauge)); }
+
+@media (prefers-reduced-motion: reduce) {
+  .js main h2 > .coupe { clip-path: none; transition: none; }
+  .js .etapes li { --f: 1; }
+  .ecran-page, .vitrine.defile .ecran-page { transform: none; transition: none; }
+  .offres h3, .offres h3::before, .entete { transition: none; }
+  .fragment, .fragment-gauche { transform: rotate(-7deg); }
+}
