@@ -1,6 +1,29 @@
 // Adresse qui reçoit les demandes du formulaire.
 const COURRIEL_CONTACT = "zndigitalcreation@gmail.com";
 
+// Textes du formulaire dans la langue de la page
+const T = document.documentElement.lang.startsWith("en") ? {
+  erreurs: {
+    nom: "Enter your name.",
+    courriel: "Enter a valid email, for example name@business.com.",
+    message: "Describe your business in a few words.",
+  },
+  nom: "Name", entreprise: "Business", courriel: "Email", telephone: "Phone",
+  projet: "Project", siteActuel: "Current website", forfait: "Package considered",
+  sujet: "Free demo request",
+  envoye: "Your email app opened with your request. Attach your photos if you have any, then send the email.",
+} : {
+  erreurs: {
+    nom: "Indiquez votre nom.",
+    courriel: "Indiquez un courriel valide, par exemple nom@entreprise.ca.",
+    message: "Décrivez votre entreprise en quelques mots.",
+  },
+  nom: "Nom", entreprise: "Entreprise", courriel: "Courriel", telephone: "Téléphone",
+  projet: "Projet", siteActuel: "Site actuel", forfait: "Forfait envisagé",
+  sujet: "Demande de démo gratuite",
+  envoye: "Votre application de courriel s'est ouverte avec votre demande. Joignez-y vos photos si vous en avez, puis envoyez le courriel.",
+};
+
 document.getElementById("annee").textContent = new Date().getFullYear();
 
 /* ---------- Menu sur téléphone ---------- */
@@ -24,14 +47,12 @@ const formulaire = document.getElementById("formulaire");
 if (formulaire) {
   const etat = document.getElementById("etat");
   const champRefonte = document.getElementById("champ-refonte");
-  const messages = {
-    nom: "Indiquez votre nom.",
-    courriel: "Indiquez un courriel valide, par exemple nom@entreprise.ca.",
-    message: "Décrivez votre entreprise en quelques mots.",
-  };
+  const messages = T.erreurs;
 
   // Le champ « site actuel » n'apparaît que pour une refonte
-  const majType = () => { champRefonte.hidden = formulaire.type.value !== "Refonte de mon site"; };
+  const majType = () => {
+    champRefonte.hidden = !formulaire.querySelector('input[name="type"]:checked').hasAttribute("data-refonte");
+  };
   formulaire.addEventListener("change", (e) => { if (e.target.name === "type") majType(); });
   majType();
 
@@ -73,20 +94,19 @@ if (formulaire) {
       return;
     }
 
-    const lignes = [`Nom : ${f.nom.value}`];
-    if (f.entreprise.value) lignes.push(`Entreprise : ${f.entreprise.value}`);
-    lignes.push(`Courriel : ${f.courriel.value}`);
-    if (f.telephone.value) lignes.push(`Téléphone : ${f.telephone.value}`);
-    lignes.push(`Projet : ${f.type.value}`);
-    if (!champRefonte.hidden && f.siteActuel.value) lignes.push(`Site actuel : ${f.siteActuel.value}`);
-    lignes.push(`Forfait envisagé : ${f.forfait.value}`, "", f.message.value);
+    const lignes = [`${T.nom} : ${f.nom.value}`];
+    if (f.entreprise.value) lignes.push(`${T.entreprise} : ${f.entreprise.value}`);
+    lignes.push(`${T.courriel} : ${f.courriel.value}`);
+    if (f.telephone.value) lignes.push(`${T.telephone} : ${f.telephone.value}`);
+    lignes.push(`${T.projet} : ${f.type.value}`);
+    if (!champRefonte.hidden && f.siteActuel.value) lignes.push(`${T.siteActuel} : ${f.siteActuel.value}`);
+    lignes.push(`${T.forfait} : ${f.forfait.value}`, "", f.message.value);
     const corps = lignes.join("\n");
-    const sujet = `Demande de démo gratuite : ${f.entreprise.value || f.nom.value}`;
+    const sujet = `${T.sujet} : ${f.entreprise.value || f.nom.value}`;
 
     window.location.href =
       `mailto:${COURRIEL_CONTACT}?subject=${encodeURIComponent(sujet)}&body=${encodeURIComponent(corps)}`;
-    etat.textContent =
-      "Votre application de courriel s'est ouverte avec votre demande. Joignez-y vos photos si vous en avez, puis envoyez le courriel.";
+    etat.textContent = T.envoye;
   });
 }
 

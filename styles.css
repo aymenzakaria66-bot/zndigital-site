@@ -105,6 +105,11 @@ h3 { font-variation-settings: var(--large); font-weight: 700; font-size: 1.3rem;
 .nav a:hover, .nav a[aria-current="page"] { text-decoration: underline; text-underline-offset: .3em; text-decoration-thickness: 2px; }
 .nav a.nav-cta { display: none; text-decoration: none; }
 .entete-cta { padding: .65rem 1.1rem; font-size: .95rem; }
+.langue {
+  font-variation-settings: var(--large); font-weight: 700; font-size: .85rem; letter-spacing: .08em;
+  text-decoration: none; padding: .3rem .15rem; border-bottom: 2px solid transparent;
+}
+.langue:hover { border-bottom-color: currentColor; }
 .menu-bouton {
   display: none; align-items: center; gap: .55rem;
   font: inherit; font-weight: 600; color: var(--encre);
@@ -404,6 +409,9 @@ form .bouton { justify-self: start; }
 .pied li + li { margin-top: .45rem; }
 .pied a { text-decoration: none; overflow-wrap: anywhere; }
 .pied a:hover, .pied a[aria-current="page"] { color: var(--os); text-decoration: underline; text-underline-offset: .3em; }
+.pied-langues-titre { margin-top: 1.6rem; }
+.pied-langues { display: flex; gap: 1.25rem; }
+.pied-langues a[aria-current] { color: var(--os); text-decoration: underline; text-underline-offset: .3em; }
 .pied-bas { grid-column: 1 / -1; border-top: 1px solid var(--encre-trait); padding-top: 1.5rem; font-size: .9rem; }
 
 /* =====================================================================

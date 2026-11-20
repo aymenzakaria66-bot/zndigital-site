@@ -8,7 +8,7 @@ const types = { ".html": "text/html; charset=utf-8", ".css": "text/css", ".js": 
 
 http.createServer((req, res) => {
   const chemin = decodeURIComponent(req.url.split("?")[0]);
-  const fichier = path.join(racine, chemin === "/" ? "index.html" : chemin);
+  const fichier = path.join(racine, chemin.endsWith("/") ? chemin + "index.html" : chemin);
   if (!fichier.startsWith(racine)) { res.writeHead(403); return res.end(); }
   fs.readFile(fichier, (err, data) => {
     if (err) { res.writeHead(404); return res.end("Introuvable"); }
