@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="fr-CA">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Obtenez votre démo gratuite | ZN Digital</title>
+  <meta name="description" content="Demandez votre démo gratuite : remplissez le formulaire et ZN Digital vous contacte sous 24 h. Aucun engagement. Grand Montréal.">
+  <meta property="og:title" content="Obtenez votre démo gratuite | ZN Digital">
+  <meta property="og:description" content="Demandez votre démo gratuite : remplissez le formulaire et ZN Digital vous contacte sous 24 h. Aucun engagement. Grand Montréal.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_CA">
+  <meta name="theme-color" content="#9DA08F">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>document.documentElement.classList.add("js");</script>
+</head>
+<body>
+  <a class="skip" href="#contenu">Aller au contenu</a>
+
+  <svg width="0" height="0" class="defs" aria-hidden="true">
+    <symbol id="zn" viewBox="0 0 640 325">
+      <polygon points="7,0 191,0 130,71 7,71"/>
+      <polygon points="212,0 286,0 286,63 72,325 0,325 0,264"/>
+      <polygon points="155,254 282,254 282,325 94,325"/>
+      <polygon points="328,32 422,185 422,325 328,325"/>
+      <polygon points="328,0 442,0 640,325 525,325"/>
+      <polygon points="546,0 640,0 640,293 546,139"/>
+    </symbol>
+  </svg>
+
+  <header class="entete">
+    <a class="marque" href="index.html" aria-label="ZN Digital, accueil">
+      <svg class="marque-zn" viewBox="0 0 640 325" aria-hidden="true"><use href="#zn"/></svg>
+      <span class="marque-trait" aria-hidden="true"></span>
+      <span class="marque-nom">Digital</span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Navigation principale">
+      <a href="presentation.html">Présentation</a>
+      <a href="forfaits.html">Forfaits</a>
+      <a href="portfolio.html">Réalisations</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html" aria-current="page">Contact</a>
+      <a class="bouton bouton-encre nav-cta" href="contact.html">Obtenir ma démo gratuite</a>
+    </nav>
+    <a class="bouton bouton-encre entete-cta" href="contact.html">Obtenir ma démo gratuite</a>
+    <button class="menu-bouton" type="button" aria-expanded="false" aria-controls="nav">
+      Menu
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7 0h2v7h7v2H9v7H7V9H0V7h7z"/></svg>
+    </button>
+  </header>
+
+  <main id="contenu">
+
+    <section class="bloc bloc-sauge tete">
+      <svg class="fragment" viewBox="0 0 640 325" aria-hidden="true"><use href="#zn"/></svg>
+      <div class="contenant">
+        <h1>Obtenez votre démo gratuite</h1>
+        <p class="chapo">Remplissez le formulaire et on vous contacte sous 24&nbsp;h. Aucun engagement.</p>
+      </div>
+    </section>
+
+    <section class="bloc bloc-encre">
+      <svg class="fragment gauche" viewBox="0 0 640 325" aria-hidden="true"><use href="#zn"/></svg>
+      <div class="contenant contact-grille">
+        <form id="formulaire" novalidate>
+          <div class="rangee">
+            <div class="champ">
+              <label for="nom">Votre nom</label>
+              <input id="nom" name="nom" type="text" autocomplete="name" required>
+            </div>
+            <div class="champ">
+              <label for="entreprise">Nom de l'entreprise <span class="facultatif">(facultatif)</span></label>
+              <input id="entreprise" name="entreprise" type="text" autocomplete="organization">
+            </div>
+          </div>
+          <div class="rangee">
+            <div class="champ">
+              <label for="courriel">Courriel</label>
+              <input id="courriel" name="courriel" type="email" autocomplete="email" required>
+            </div>
+            <div class="champ">
+              <label for="telephone">Téléphone <span class="facultatif">(facultatif)</span></label>
+              <input id="telephone" name="telephone" type="tel" autocomplete="tel">
+            </div>
+          </div>
+          <fieldset class="champ">
+            <legend>Votre projet</legend>
+            <div class="choix">
+              <label><input type="radio" name="type" value="Nouveau site" checked><span>Nouveau site</span></label>
+              <label><input type="radio" name="type" value="Refonte de mon site"><span>Refonte de mon site</span></label>
+            </div>
+          </fieldset>
+          <div class="champ" id="champ-refonte" hidden>
+            <label for="siteActuel">Adresse de votre site actuel</label>
+            <input id="siteActuel" name="siteActuel" type="text" inputmode="url" placeholder="votreentreprise.com">
+          </div>
+          <div class="champ">
+            <label for="forfait">Forfait envisagé</label>
+            <select id="forfait" name="forfait">
+              <option>Je ne sais pas encore</option>
+              <option>Essentiel, à partir de 500 $</option>
+              <option>Pro, à partir de 1 500 $</option>
+              <option>Complet, à partir de 2 500 $</option>
+            </select>
+          </div>
+          <div class="champ">
+            <label for="message">Parlez-nous de votre entreprise</label>
+            <textarea id="message" name="message" rows="5" required aria-describedby="message-indice"></textarea>
+            <span class="indice" id="message-indice">Vos services, vos clients, ce que vous voulez sur votre site. Pour une refonte, dites-nous ce qui ne vous plaît plus.</span>
+          </div>
+          <button class="bouton bouton-os" type="submit">Envoyer ma demande</button>
+          <p class="envoi-note">Votre application de courriel s'ouvrira avec votre demande déjà rédigée. Vous pourrez y joindre des photos de votre entreprise.</p>
+          <p class="etat" id="etat" role="status" aria-live="polite"></p>
+        </form>
+
+        <aside class="joindre">
+          <h2>Nous joindre</h2>
+          <dl>
+            <div><dt>Courriel</dt><dd><a href="mailto:zndigitalcreation@gmail.com">zndigitalcreation@gmail.com</a></dd></div>
+            <div><dt>Téléphone</dt><dd><a href="tel:+14387283615">438 728-3615</a></dd></div>
+            <div><dt>Région desservie</dt><dd>Grand Montréal</dd></div>
+            <div><dt>Instagram</dt><dd><a href="https://www.instagram.com/zndigitalcreation/" target="_blank" rel="noopener">@zndigitalcreation</a></dd></div>
+          </dl>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pied">
+    <div class="contenant pied-grille">
+      <div class="pied-marque">
+        <svg viewBox="0 0 640 325" role="img" aria-label="ZN Digital"><use href="#zn"/></svg>
+        <p>ZN Digital, sites web professionnels pour entreprises locales.</p>
+      </div>
+      <nav aria-label="Pied de page">
+        <p class="pied-titre">Pages</p>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="presentation.html">Présentation</a></li>
+          <li><a href="forfaits.html">Forfaits</a></li>
+          <li><a href="portfolio.html">Réalisations</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contact.html" aria-current="page">Contact</a></li>
+        </ul>
+      </nav>
+      <div>
+        <p class="pied-titre">Nous joindre</p>
+        <ul>
+          <li><a href="mailto:zndigitalcreation@gmail.com">zndigitalcreation@gmail.com</a></li>
+          <li><a href="tel:+14387283615">438 728-3615</a></li>
+          <li><a href="https://www.instagram.com/zndigitalcreation/" target="_blank" rel="noopener">Instagram</a></li>
+          <li>Grand Montréal</li>
+        </ul>
+      </div>
+      <p class="pied-bas">© <span id="annee">2026</span> ZN Digital. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

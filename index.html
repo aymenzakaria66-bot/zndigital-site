@@ -3,8 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ZN Digital — Création de sites web sur mesure</title>
-  <meta name="description" content="ZN Digital conçoit et met en ligne des sites web sur mesure pour les entreprises : sites vitrines, boutiques en ligne et refontes.">
+  <title>ZN Digital | Création de sites web et marketing à Montréal</title>
+  <meta name="description" content="ZN Digital accompagne les PME de Montréal dans la création de sites web, le référencement SEO, le branding et les réseaux sociaux. Demandez une soumission.">
+  <meta property="og:title" content="ZN Digital | Création de sites web et marketing à Montréal">
+  <meta property="og:description" content="ZN Digital accompagne les PME de Montréal dans la création de sites web, le référencement SEO, le branding et les réseaux sociaux. Demandez une soumission.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_CA">
   <meta name="theme-color" content="#9DA08F">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,11 +16,22 @@
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script>document.documentElement.classList.add("js");</script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "ZN Digital",
+    "description": "Création de sites web professionnels pour les entreprises du Grand Montréal.",
+    "email": "zndigitalcreation@gmail.com",
+    "telephone": "+1-438-728-3615",
+    "areaServed": "Grand Montréal",
+    "sameAs": ["https://www.instagram.com/zndigitalcreation/"]
+  }
+  </script>
 </head>
 <body>
   <a class="skip" href="#contenu">Aller au contenu</a>
 
-  <!-- Monogramme ZN : défini une fois, réutilisé partout -->
   <svg width="0" height="0" class="defs" aria-hidden="true">
     <symbol id="zn" viewBox="0 0 640 325">
       <polygon points="7,0 191,0 130,71 7,71"/>
@@ -29,90 +44,100 @@
   </svg>
 
   <header class="entete">
-    <a class="marque" href="#" aria-label="ZN Digital, accueil">
+    <a class="marque" href="index.html" aria-label="ZN Digital, accueil">
       <svg class="marque-zn" viewBox="0 0 640 325" aria-hidden="true"><use href="#zn"/></svg>
       <span class="marque-trait" aria-hidden="true"></span>
       <span class="marque-nom">Digital</span>
     </a>
-    <nav class="nav" aria-label="Navigation principale">
-      <a href="#services">Services</a>
-      <a href="#realisations">Réalisations</a>
-      <a href="#methode">Méthode</a>
-      <a href="#questions">Questions</a>
+    <nav class="nav" id="nav" aria-label="Navigation principale">
+      <a href="presentation.html">Présentation</a>
+      <a href="forfaits.html">Forfaits</a>
+      <a href="portfolio.html">Réalisations</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+      <a class="bouton bouton-encre nav-cta" href="contact.html">Obtenir ma démo gratuite</a>
     </nav>
-    <a class="bouton bouton-encre" href="#contact">Démarrer un projet</a>
+    <a class="bouton bouton-encre entete-cta" href="contact.html">Obtenir ma démo gratuite</a>
+    <button class="menu-bouton" type="button" aria-expanded="false" aria-controls="nav">
+      Menu
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7 0h2v7h7v2H9v7H7V9H0V7h7z"/></svg>
+    </button>
   </header>
 
   <main id="contenu">
 
-    <section class="hero">
-      <div class="hero-texte">
-        <h1>Des sites web taillés sur mesure.</h1>
-        <p class="chapo">ZN Digital conçoit, construit et met en ligne le site de votre entreprise. Pas de gabarit recyclé&nbsp;: un site pensé pour vos clients, rapide, et que vous pouvez faire évoluer.</p>
-        <div class="hero-actions">
-          <a class="bouton bouton-encre" href="#contact">Démarrer un projet</a>
-          <a class="lien" href="#methode">Voir comment on travaille</a>
+    <section class="bloc bloc-sauge hero">
+      <div class="contenant">
+        <div>
+          <h1>Votre entreprise mérite une présence numérique à la hauteur de son potentiel.</h1>
+          <p class="accroche">Un site web professionnel pour votre entreprise, sans aucun risque.</p>
+          <p class="chapo">On crée un aperçu de votre futur site gratuitement. Vous payez seulement si vous l'aimez.</p>
+          <div class="actions">
+            <a class="bouton bouton-encre" href="contact.html">Obtenir ma démo gratuite</a>
+            <a class="lien" href="portfolio.html">Voir nos réalisations</a>
+          </div>
         </div>
+        <svg class="hero-zn" viewBox="0 0 640 325" aria-hidden="true">
+          <polygon style="--dx:-90px;--dy:0px;--i:0" points="7,0 191,0 130,71 7,71"/>
+          <polygon style="--dx:70px;--dy:-86px;--i:1" points="212,0 286,0 286,63 72,325 0,325 0,264"/>
+          <polygon style="--dx:90px;--dy:0px;--i:2" points="155,254 282,254 282,325 94,325"/>
+          <polygon style="--dx:0px;--dy:90px;--i:3" points="328,32 422,185 422,325 328,325"/>
+          <polygon style="--dx:-55px;--dy:-90px;--i:4" points="328,0 442,0 640,325 525,325"/>
+          <polygon style="--dx:0px;--dy:-90px;--i:5" points="546,0 640,0 640,293 546,139"/>
+        </svg>
       </div>
-      <svg class="hero-zn" viewBox="0 0 640 325" role="img" aria-label="Monogramme ZN">
-        <polygon style="--dx:-90px;--dy:0px;--i:0;--p:10" points="7,0 191,0 130,71 7,71"/>
-        <polygon style="--dx:70px;--dy:-86px;--i:1;--p:22" points="212,0 286,0 286,63 72,325 0,325 0,264"/>
-        <polygon style="--dx:90px;--dy:0px;--i:2;--p:14" points="155,254 282,254 282,325 94,325"/>
-        <polygon style="--dx:0px;--dy:90px;--i:3;--p:18" points="328,32 422,185 422,325 328,325"/>
-        <polygon style="--dx:-55px;--dy:-90px;--i:4;--p:8" points="328,0 442,0 640,325 525,325"/>
-        <polygon style="--dx:0px;--dy:-90px;--i:5;--p:26" points="546,0 640,0 640,293 546,139"/>
-      </svg>
     </section>
 
-    <section class="services" id="services">
+    <section class="bloc bloc-os">
+      <div class="contenant">
+        <h2>Comment ça marche</h2>
+        <ol class="etapes">
+          <li>
+            <h3>Parlez-nous de votre entreprise</h3>
+            <p>Remplissez le formulaire. Ajoutez des photos de votre entreprise si vous en avez : elles nous aident à préparer une démo qui vous ressemble.</p>
+          </li>
+          <li>
+            <h3>Recevez votre démo gratuite</h3>
+            <p>On vous montre un aperçu de votre futur site, sans frais et sans engagement.</p>
+          </li>
+          <li>
+            <h3>Vous l'aimez&nbsp;? On le termine</h3>
+            <p>On complète votre site, on le met en ligne et votre entreprise est visible sur le web.</p>
+          </li>
+        </ol>
+        <div class="note">
+          <h3>Vous avez déjà un site&nbsp;?</h3>
+          <p>Expliquez-nous ce qui ne va plus : manque de visibilité, image à rafraîchir, changement d'image de marque. On fait un audit gratuit de votre site actuel et on vous propose nos recommandations.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="bloc bloc-encre inverse">
       <svg class="fragment" viewBox="0 0 640 325" aria-hidden="true"><use href="#zn"/></svg>
-      <div class="contenant">
-        <h2>Ce qu'on crée pour vous</h2>
-        <ul class="offres">
-          <li>
-            <h3>Site vitrine</h3>
-            <p>Quelques pages claires qui présentent votre entreprise, vos services et comment vous joindre. Idéal pour être trouvé sur Google et inspirer confiance dès la première visite.</p>
-          </li>
-          <li>
-            <h3>Boutique en ligne</h3>
-            <p>Catalogue, panier, paiement sécurisé et gestion des commandes. Vous ajoutez vos produits vous-même, sans toucher au code.</p>
-          </li>
-          <li>
-            <h3>Refonte</h3>
-            <p>Votre site actuel est lent, daté ou illisible sur téléphone&nbsp;? On le reconstruit en gardant votre contenu, votre nom de domaine et votre référencement.</p>
-          </li>
-          <li>
-            <h3>Suivi après la mise en ligne</h3>
-            <p>Mises à jour, sauvegardes, corrections et petites modifications. Votre site reste à jour sans que vous ayez à y penser.</p>
-          </li>
-        </ul>
-
-        <div class="inclus">
-          <h3>Dans chaque site, sans supplément</h3>
-          <ul>
-            <li>Un affichage soigné sur téléphone, tablette et ordinateur</li>
-            <li>Un site sécurisé (connexion HTTPS) et conforme aux normes du web</li>
-            <li>Des pages qui se chargent vite</li>
-            <li>Les bases du référencement Google en place dès le départ</li>
-            <li>Un site qui vous appartient&nbsp;: code, contenu et nom de domaine</li>
+      <div class="contenant deux">
+        <h2>En bref</h2>
+        <div>
+          <ul class="puces">
+            <li>Site bilingue français et anglais</li>
+            <li>Adapté aux cellulaires, ordinateurs et tablettes</li>
+            <li>Nom de domaine inclus la première année, selon le forfait</li>
+            <li>Votre site vous appartient, selon le forfait</li>
           </ul>
+          <p class="suite"><a class="lien" href="presentation.html">En savoir plus sur notre approche</a></p>
         </div>
       </div>
     </section>
 
-    <section class="realisations" id="realisations">
+    <section class="bloc bloc-sauge">
       <div class="contenant">
-        <h2>Exemple d'un site réalisé par notre agence</h2>
-
-        <a class="vitrine" href="https://zkdetails.ca" target="_blank" rel="noopener" aria-label="Visiter le site zkdetails.ca">
+        <h2>Nos réalisations</h2>
+        <p class="intro">Quelques sites que nous avons créés.</p>
+        <a class="vitrine" href="https://zkdetails.ca" target="_blank" rel="noopener" aria-label="Voir le site zkdetails.ca (nouvel onglet)">
           <div class="ecran">
-            <div class="ecran-barre" aria-hidden="true">
-              <span></span><span></span><span></span>
-              <b>zkdetails.ca</b>
-            </div>
+            <div class="ecran-barre" aria-hidden="true"><span></span><span></span><span></span><b>zkdetails.ca</b></div>
             <div class="ecran-vue">
               <div class="ecran-page">
-                <img src="assets/zkdetails-ordi.jpg" alt="Le site ZKdetails sur ordinateur : « On lave votre voiture à la main, là où elle est garée. »" width="2880" height="1800" loading="lazy">
+                <img src="assets/zkdetails-ordi.jpg" alt="Le site ZK Details sur ordinateur" width="2880" height="1800" loading="lazy">
                 <img src="assets/zkdetails-suite-1.jpg" alt="" width="2160" height="1350" loading="lazy">
                 <img src="assets/zkdetails-suite-2.jpg" alt="" width="2160" height="1350" loading="lazy">
                 <img src="assets/zkdetails-suite-3.jpg" alt="" width="2160" height="1350" loading="lazy">
@@ -121,113 +146,30 @@
             </div>
           </div>
           <div class="telephone">
-            <img src="assets/zkdetails-mobile.jpg" alt="Le même site sur téléphone" width="1170" height="2532" loading="lazy">
+            <img src="assets/zkdetails-mobile.jpg" alt="Le même site sur cellulaire" width="1170" height="2532" loading="lazy">
           </div>
         </a>
-
-        <div class="fiche">
-          <div>
-            <h3>ZKdetails, lavage auto mobile sur la Rive-Sud</h3>
-            <p>Un site conçu pour que le client choisisse son forfait et demande un rendez-vous en deux minutes, depuis son téléphone comme depuis son ordinateur.</p>
-            <a class="bouton bouton-encre" href="https://zkdetails.ca" target="_blank" rel="noopener">Visiter zkdetails.ca</a>
-          </div>
-          <ul>
-            <li>Trois forfaits avec les prix affichés</li>
-            <li>Galerie de photos avant-après</li>
-            <li>Formulaire de demande de rendez-vous</li>
-            <li>Offert en français et en anglais</li>
-          </ul>
-        </div>
+        <ul class="projets">
+          <li><a class="domaine" href="https://zkdetails.ca" target="_blank" rel="noopener">zkdetails.ca</a><span>ZK Details, esthétique automobile mobile à La Prairie</span></li>
+          <li><span class="domaine">bynafsi.ca</span><span class="attente">Portfolio Nafsi. Mise en ligne prochainement.</span></li>
+        </ul>
+        <p class="suite"><a class="lien" href="portfolio.html">Voir nos réalisations</a></p>
       </div>
     </section>
 
-    <section class="methode" id="methode">
+    <section class="bloc bloc-os inverse prix">
       <div class="contenant">
-        <h2>De la première rencontre à la mise en ligne</h2>
-        <ol class="etapes">
-          <li>
-            <h3>Rencontre</h3>
-            <p>On discute de votre entreprise, de vos clients et de ce que le site doit accomplir. Vous recevez ensuite une soumission claire, sans surprise.</p>
-          </li>
-          <li>
-            <h3>Maquette</h3>
-            <p>On vous présente le design de vos pages avant d'écrire une ligne de code. Vous commentez, on ajuste.</p>
-          </li>
-          <li>
-            <h3>Construction</h3>
-            <p>On développe le site et vous suivez l'avancement sur un lien privé, à votre rythme.</p>
-          </li>
-          <li>
-            <h3>Mise en ligne</h3>
-            <p>On publie le site, on vérifie tout avec vous et on vous montre comment modifier votre contenu.</p>
-          </li>
-        </ol>
+        <h2>Des sites professionnels à partir de 500&nbsp;$.</h2>
+        <a class="lien" href="forfaits.html">Voir les forfaits</a>
       </div>
     </section>
 
-    <section class="questions" id="questions">
-      <div class="contenant questions-grille">
-        <h2>Questions fréquentes</h2>
-        <div class="faq">
-          <details>
-            <summary>Combien coûte un site&nbsp;?</summary>
-            <p>Ça dépend du nombre de pages et des fonctions voulues. Après la première rencontre, gratuite, vous recevez une soumission à prix fixe&nbsp;: le montant ne change pas en cours de route.</p>
-          </details>
-          <details>
-            <summary>Combien de temps ça prend&nbsp;?</summary>
-            <p>Un site vitrine se livre généralement en quelques semaines. Une boutique en ligne demande plus de temps, selon la taille du catalogue. Le calendrier est fixé avec vous avant de commencer.</p>
-          </details>
-          <details>
-            <summary>Est-ce que je pourrai modifier mon site moi-même&nbsp;?</summary>
-            <p>Oui. À la mise en ligne, on vous montre comment changer vos textes, vos photos et vos produits. Pour le reste, le suivi est là si vous en avez besoin.</p>
-          </details>
-          <details>
-            <summary>Je n'ai ni textes ni photos. C'est un problème&nbsp;?</summary>
-            <p>Non. On peut vous aider à rédiger vos textes et à choisir des images qui représentent bien votre entreprise.</p>
-          </details>
-          <details>
-            <summary>J'ai déjà un nom de domaine. Est-ce que je le garde&nbsp;?</summary>
-            <p>Oui, il reste à vous. On s'occupe de le relier au nouveau site, et si vous n'en avez pas, on vous aide à en choisir un.</p>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <section class="contact" id="contact">
-      <svg class="fragment fragment-gauche" viewBox="0 0 640 325" aria-hidden="true"><use href="#zn"/></svg>
-      <div class="contenant contact-grille">
-        <div>
-          <h2>Parlez-nous de votre projet</h2>
-          <p class="chapo">Décrivez votre entreprise et ce que vous avez en tête. On vous répond pour fixer une première rencontre, sans frais ni engagement.</p>
-          <p class="courriel">Ou écrivez directement à <a id="lien-courriel" href="mailto:zndigitalcreation@gmail.com">zndigitalcreation@gmail.com</a></p>
-          <p class="courriel courriel-suite">Suivez-nous sur Instagram&nbsp;: <a href="https://www.instagram.com/zndigitalcreation/" target="_blank" rel="noopener">@zndigitalcreation</a></p>
-        </div>
-
-        <form id="formulaire" novalidate>
-          <div class="champ">
-            <label for="nom">Votre nom</label>
-            <input id="nom" name="nom" type="text" autocomplete="name" required>
-          </div>
-          <div class="champ">
-            <label for="courriel">Votre courriel</label>
-            <input id="courriel" name="courriel" type="email" autocomplete="email" required>
-          </div>
-          <fieldset class="champ">
-            <legend>Type de projet</legend>
-            <div class="choix">
-              <label><input type="radio" name="type" value="Site vitrine" checked><span>Site vitrine</span></label>
-              <label><input type="radio" name="type" value="Boutique en ligne"><span>Boutique en ligne</span></label>
-              <label><input type="radio" name="type" value="Refonte"><span>Refonte</span></label>
-              <label><input type="radio" name="type" value="Autre"><span>Autre</span></label>
-            </div>
-          </fieldset>
-          <div class="champ">
-            <label for="message">Votre projet en quelques lignes</label>
-            <textarea id="message" name="message" rows="5" required></textarea>
-          </div>
-          <button class="bouton bouton-os" type="submit">Préparer mon courriel</button>
-          <p class="etat" id="etat" role="status" aria-live="polite"></p>
-        </form>
+    <section class="bloc bloc-encre appel">
+      <svg class="fragment gauche" viewBox="0 0 640 325" aria-hidden="true"><use href="#zn"/></svg>
+      <div class="contenant">
+        <h2>Prêt à voir votre futur site&nbsp;?</h2>
+        <p>La démo est gratuite et sans engagement.</p>
+        <a class="bouton bouton-os" href="contact.html">Obtenir ma démo gratuite</a>
       </div>
     </section>
   </main>
@@ -235,18 +177,30 @@
   <footer class="pied">
     <div class="contenant pied-grille">
       <div class="pied-marque">
-        <svg viewBox="0 0 640 325" aria-hidden="true"><use href="#zn"/></svg>
-        <span>Digital Creation</span>
+        <svg viewBox="0 0 640 325" role="img" aria-label="ZN Digital"><use href="#zn"/></svg>
+        <p>ZN Digital, sites web professionnels pour entreprises locales.</p>
       </div>
       <nav aria-label="Pied de page">
-        <a href="#services">Services</a>
-        <a href="#realisations">Réalisations</a>
-        <a href="#methode">Méthode</a>
-        <a href="#questions">Questions</a>
-        <a href="#contact">Contact</a>
-        <a href="https://www.instagram.com/zndigitalcreation/" target="_blank" rel="noopener">Instagram</a>
+        <p class="pied-titre">Pages</p>
+        <ul>
+          <li><a href="index.html" aria-current="page">Accueil</a></li>
+          <li><a href="presentation.html">Présentation</a></li>
+          <li><a href="forfaits.html">Forfaits</a></li>
+          <li><a href="portfolio.html">Réalisations</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
       </nav>
-      <p>© <span id="annee">2026</span> ZN Digital. Tous droits réservés.</p>
+      <div>
+        <p class="pied-titre">Nous joindre</p>
+        <ul>
+          <li><a href="mailto:zndigitalcreation@gmail.com">zndigitalcreation@gmail.com</a></li>
+          <li><a href="tel:+14387283615">438 728-3615</a></li>
+          <li><a href="https://www.instagram.com/zndigitalcreation/" target="_blank" rel="noopener">Instagram</a></li>
+          <li>Grand Montréal</li>
+        </ul>
+      </div>
+      <p class="pied-bas">© <span id="annee">2026</span> ZN Digital. Tous droits réservés.</p>
     </div>
   </footer>
 
