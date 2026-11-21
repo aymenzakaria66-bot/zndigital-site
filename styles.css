@@ -800,3 +800,25 @@ input:focus-visible, textarea:focus-visible, select:focus-visible {
 .pied-titre { color: var(--encre); }
 .pied a:hover, .pied a[aria-current="page"], .pied-langues a[aria-current] { color: var(--encre); }
 .pied-bas { border-top-color: color-mix(in srgb, var(--encre) 25%, var(--sauge)); }
+
+/* ---------- Logo ZN complet en tête de page (remplace les pièces isolées) ---------- */
+.embleme.logo-complet { --dx: 0px; --dy: 1.5rem; width: clamp(14rem, 26vw, 23rem); height: auto; }
+.embleme.sur-encre.logo-complet { width: clamp(13rem, 22vw, 20rem); height: auto; }
+.logo-complet text { font-family: "Archivo", "Helvetica Neue", Arial, sans-serif; font-weight: 500; font-variation-settings: "wdth" 112; }
+
+/* Fonds : le ZN entier en filigrane, plutôt que des morceaux recadrés */
+.fragment, .fragment.gauche {
+  width: min(30rem, 46vw); left: auto; right: var(--marge); top: auto; bottom: calc(var(--coupe) + 2rem);
+  transform: translateY(var(--par, 0px));
+}
+
+@media (max-width: 48rem) {
+  .embleme.logo-complet { width: 11rem; }
+  .fragment, .fragment.gauche { width: 60vw; bottom: calc(var(--coupe) + 1rem); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fragment, .fragment.gauche { transform: none; }
+}
+
+/* Pas de filigrane là où le logo complet est déjà affiché */
+.bloc:has(.sur-encre) .fragment { display: none; }

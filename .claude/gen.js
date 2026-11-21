@@ -95,11 +95,8 @@ const PIECES = [
   { points: "328,0 442,0 640,325 525,325", vb: "328 0 312 325", forme: "haute", d: "-50px,-80px" },
   { points: "546,0 640,0 640,293 546,139", vb: "546 0 94 293", forme: "haute", d: "0px,-80px" },
 ];
-const embleme = (n, classe = "") => {
-  const p = PIECES[n];
-  const [dx, dy] = p.d.split(",");
-  return `<svg class="embleme ${p.forme}${classe ? " " + classe : ""}" viewBox="${p.vb}" style="--dx:${dx};--dy:${dy}" aria-hidden="true"><polygon points="${p.points}"/></svg>`;
-};
+const embleme = (n, classe = "") =>
+  `<svg class="embleme logo-complet${classe ? " " + classe : ""}" viewBox="-15 -20 840 480" aria-hidden="true"><use href="#zn" width="640" height="325"/><rect x="718" y="-15" width="6" height="375"/><text transform="translate(805 357) rotate(-90)" font-size="60" textLength="357" lengthAdjust="spacing">DIGITAL</text><text x="-12" y="451" font-size="50" textLength="374" lengthAdjust="spacing">CREATION</text></svg>`;
 
 
 /* Quiz « Quel forfait vous convient ? » (affiché seulement si JavaScript est actif) */
@@ -721,24 +718,20 @@ function contenu(code) {
   /* ----------------------------------------------------------- FAQ */
   const qr = fr ? [
     ["Est-ce que la démo m'engage à quelque chose&nbsp;?", "Non. Si la démo ne vous plaît pas, vous ne payez rien."],
-    ["Combien de temps faut-il pour avoir mon site&nbsp;?", "La démo est prête en quelques jours. Le site complet est généralement en ligne en 1 à 2 semaines."],
+    ["Combien de temps faut-il pour avoir mon site&nbsp;?", "Cela dépend de votre demande. On vous donne une estimation dès notre premier échange."],
     ["Qu'est-ce qu'un nom de domaine&nbsp;?", "C'est l'adresse de votre site, par exemple votreentreprise.com. Il est inclus la première année et enregistré à votre nom."],
     ["Est-ce que mon site va bien s'afficher sur cellulaire&nbsp;?", "Oui. Tous nos sites s'adaptent automatiquement aux cellulaires, tablettes et ordinateurs."],
     ["Est-ce que je peux modifier mon site moi-même&nbsp;?", "Oui, avec le forfait Complet. Sinon, on s'occupe des modifications pour vous."],
-    ["Qu'arrive-t-il après la première année&nbsp;?", "Votre site reste en ligne avec des frais d'hébergement mensuels. Votre domaine est renouvelé à votre nom."],
     ["Est-ce que le site m'appartient&nbsp;?", "Oui. Le domaine est à votre nom et votre présence en ligne vous appartient."],
     ["J'ai déjà un site, pouvez-vous le refaire&nbsp;?", "Absolument. On peut moderniser votre site actuel et garder votre nom de domaine."],
-    ["Comment se fait le paiement&nbsp;?", "50&nbsp;% à l'acceptation de la démo, 50&nbsp;% à la mise en ligne."],
   ] : [
     ["Does the demo commit me to anything?", "No. If you don't like the demo, you pay nothing."],
-    ["How long does it take to get my website?", "The demo is ready in a few days. The complete website is usually online within 1 to 2 weeks."],
+    ["How long does it take to get my website?", "It depends on your request. We'll give you an estimate as soon as we first talk."],
     ["What is a domain name?", "It's your website's address, for example yourbusiness.com. It's included for the first year and registered in your name."],
     ["Will my website look good on a phone?", "Yes. All our websites automatically adapt to phones, tablets and computers."],
     ["Can I edit my website myself?", "Yes, with the Complete package. Otherwise, we make the changes for you."],
-    ["What happens after the first year?", "Your website stays online with monthly hosting fees. Your domain is renewed in your name."],
     ["Does the website belong to me?", "Yes. The domain is in your name and your online presence belongs to you."],
     ["I already have a website. Can you redo it?", "Absolutely. We can modernize your current website and keep your domain name."],
-    ["How does payment work?", "50% when you approve the demo, 50% at launch."],
   ];
   const faq = {
     fichier: "faq.html",
