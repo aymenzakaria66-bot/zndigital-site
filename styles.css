@@ -291,16 +291,18 @@ main > .bloc:last-child { padding-bottom: var(--respire); }
 .raisons h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 800; }
 .raisons p { margin-top: .6rem; max-width: 32em; }
 
-.secteurs { display: flex; flex-wrap: wrap; gap: .5rem 1.4rem; margin-top: clamp(2rem, 4vw, 3rem); max-width: 64rem; }
-.secteurs li {
-  display: flex; align-items: center; gap: 1.4rem;
-  font-variation-settings: var(--large); font-weight: 700; font-size: clamp(1.3rem, 2.4vw, 2rem);
+.raisons.trois { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.bloc-encre .raisons p { color: var(--os-doux); }
+
+.secteurs {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2.25rem clamp(2rem, 4vw, 4rem); margin-top: clamp(2.5rem, 5vw, 3.5rem);
 }
-.secteurs li:not(:last-child)::after {
-  content: ""; width: .8rem; height: .65rem; background: var(--sauge);
-  clip-path: polygon(40% 0, 100% 0, 60% 100%, 0 100%);
-}
-.secteurs-suite { margin-top: 1.5rem; font-size: clamp(1.1rem, 1.4vw, 1.3rem); color: var(--os-doux); }
+.secteurs li { border-top: 2px solid var(--sauge); padding-top: 1.1rem; }
+.secteurs h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 800; }
+.secteurs p { margin-top: .6rem; color: var(--os-doux); max-width: 30em; }
+.secteurs .lien { display: inline-block; margin-top: .8rem; }
+.secteurs-suite { margin-top: 2.5rem; font-size: clamp(1.1rem, 1.4vw, 1.3rem); color: var(--os-doux); }
 
 /* ---------- Forfaits ---------- */
 .plans {
@@ -450,12 +452,13 @@ body::before {
   .hero .contenant, .deux, .fiche, .contact-grille { grid-template-columns: 1fr; }
   .hero-zn { max-width: 24rem; order: -1; }
   .plans { grid-template-columns: 1fr; max-width: 34rem; }
+  .raisons.trois, .secteurs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .pied-grille { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .pied-marque { grid-column: 1 / -1; }
 }
 @media (max-width: 48rem) {
   .etapes { grid-template-columns: 1fr; }
-  .puces, .raisons, .heberg, .rangee { grid-template-columns: 1fr; }
+  .puces, .raisons, .raisons.trois, .secteurs, .heberg, .rangee { grid-template-columns: 1fr; }
   .projets li { grid-template-columns: 1fr; }
 }
 @media (max-width: 40rem) {
