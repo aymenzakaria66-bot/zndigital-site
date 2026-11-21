@@ -932,3 +932,50 @@ input:focus-visible, textarea:focus-visible, select:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   .bandeau-piste { animation: none; }
 }
+
+/* =====================================================================
+   Fonds crème (plus de vert en arrière-plan)
+   Crème en base, crème plus soutenu en alternance, kaki pour le pied de page.
+   Le vert ne sert plus qu'aux accents : logo, emblèmes, puces, badges.
+   ===================================================================== */
+:root { --creme-fonce: color-mix(in srgb, var(--encre) 7%, var(--os)); }
+body { background: var(--os); }
+.bloc-sauge { background: var(--os); }
+.bloc-os { background: var(--creme-fonce); }
+
+/* En-tête et menu */
+.entete { background: var(--os); }
+.marque { color: var(--encre); }
+@media (max-width: 66rem) {
+  .nav { background: var(--os); }
+  .nav a { border-bottom-color: color-mix(in srgb, var(--encre) 14%, var(--os)); }
+}
+
+/* Logo et formes en vert sur la crème */
+.embleme, .embleme.sur-encre { fill: var(--sauge); }
+.bloc-sauge .fragment { fill: color-mix(in srgb, var(--sauge) 20%, var(--os)); }
+.bloc-os .fragment { fill: color-mix(in srgb, var(--sauge) 22%, var(--creme-fonce)); }
+.bloc-sauge .puces li::before, .bloc-os .puces li::before { background: var(--sauge); }
+
+/* Bandeau de garanties : kaki, texte crème, repères verts */
+.bandeau { background: var(--encre); color: var(--os); }
+
+/* Démo de l'accueil : badge vert pour ressortir sur la crème */
+.ch-badge { background: var(--sauge); }
+
+/* Comparatif : la colonne ZN Digital légèrement teintée de vert */
+.cmpf-oui { background: color-mix(in srgb, var(--sauge) 26%, var(--os)); }
+.cmpf-ligne span { border-bottom-color: color-mix(in srgb, var(--encre) 14%, var(--os)); }
+
+/* Pied de page kaki, logo crème */
+.pied { background: var(--encre); color: var(--os-doux); border-top: 0; }
+.pied-marque svg { fill: var(--os); }
+.pied-titre { color: var(--os); }
+.pied a:hover, .pied a[aria-current="page"], .pied-langues a[aria-current] { color: var(--os); }
+.pied-bas { border-top-color: var(--encre-trait); }
+
+/* Barre d'action sur téléphone */
+@media (max-width: 40rem) {
+  .barre-mobile { background: var(--os); }
+  .barre-mobile .bouton-os { background-image: linear-gradient(115deg, var(--sauge) 50%, color-mix(in srgb, var(--sauge) 45%, var(--os)) 50.1%); }
+}
