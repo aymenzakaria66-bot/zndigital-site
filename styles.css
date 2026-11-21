@@ -359,7 +359,7 @@ main > .bloc:last-child { padding-bottom: var(--respire); }
 .prix h2 { font-size: clamp(2.2rem, 5vw, 4.6rem); max-width: 15ch; }
 
 /* ---------- Appel à l'action ---------- */
-.appel p { margin-top: 1rem; font-size: clamp(1.1rem, 1.4vw, 1.3rem); color: var(--os-doux); }
+.appel .contenant > p { margin-top: 1rem; font-size: clamp(1.1rem, 1.4vw, 1.3rem); color: var(--os-doux); }
 .appel .bouton { margin-top: 2rem; }
 
 /* ---------- Présentation ---------- */
@@ -378,10 +378,79 @@ main > .bloc:last-child { padding-bottom: var(--respire); }
   display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 2.25rem clamp(2rem, 4vw, 4rem); margin-top: clamp(2.5rem, 5vw, 3.5rem);
 }
-.secteurs li { border-top: 2px solid var(--sauge); padding-top: 1.1rem; }
-.secteurs h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 800; }
-.secteurs p { margin-top: .6rem; color: var(--os-doux); max-width: 30em; }
-.secteurs .lien { display: inline-block; margin-top: .8rem; }
+.secteurs > li { container-type: inline-size; }
+.secteurs > li > h3 { margin-top: 1.4rem; }
+.secteurs > li > h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 800; }
+.secteurs > li > p { margin-top: .6rem; color: var(--os-doux); max-width: 30em; }
+.secteurs > li > .lien { display: inline-block; margin-top: .8rem; }
+
+/* Maquettes de démos (chaque entreprise fictive garde ses propres couleurs) */
+.mq {
+  font-size: 3.3cqi;
+  background: color-mix(in srgb, var(--os) 10%, var(--encre)); border-radius: .8em; padding: 0 .35em .35em;
+  box-shadow: 0 1.6rem 3rem -1.2rem rgba(0, 0, 0, .7);
+}
+.mq-barre { display: flex; align-items: center; gap: .32em; padding: .55em .4em; }
+.mq-barre > span { width: .5em; height: .5em; border-radius: 50%; background: var(--encre-mi); }
+.mq-barre b {
+  margin-left: .6em; padding: .15em .8em; border-radius: 1em;
+  background: var(--encre-trait); color: var(--os-doux); font-weight: 500; font-size: .75em;
+}
+.mq-site {
+  aspect-ratio: 4 / 3.5; overflow: hidden; border-radius: 0 0 .45em .45em;
+  background: var(--m-fond); color: var(--m-texte);
+  display: flex; flex-direction: column;
+}
+.mq-nav {
+  display: flex; align-items: center; justify-content: space-between; gap: 1em;
+  padding: .75em 1.1em; border-bottom: 1px solid color-mix(in srgb, var(--m-texte) 14%, var(--m-fond));
+}
+.mq-nom { font-weight: 700; font-size: .95em; }
+.mq-liens { display: flex; gap: .6em; }
+.mq-liens span { width: 2.1em; height: .38em; border-radius: .3em; background: color-mix(in srgb, var(--m-texte) 25%, var(--m-fond)); }
+.mq-hero { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 1em; align-items: center; padding: 1.1em 1.1em .9em; }
+.mq-titre { font-weight: 800; font-size: 1.35em; line-height: 1.08; letter-spacing: -.01em; }
+.mq[data-police="serif"] .mq-titre,
+.mq[data-police="serif"] .mq-nom { font-family: Georgia, "Times New Roman", serif; font-weight: 700; letter-spacing: 0; }
+.mq[data-police="large"] .mq-titre,
+.mq[data-police="large"] .mq-nom { font-variation-settings: "wdth" 125; }
+.mq[data-police="etroite"] .mq-titre,
+.mq[data-police="etroite"] .mq-nom { font-variation-settings: "wdth" 68; text-transform: uppercase; font-size: 1.55em; line-height: .98; }
+.mq[data-police="etroite"] .mq-nom { font-size: 1.05em; }
+.mq-btn {
+  display: inline-block; margin-top: .9em; padding: .55em .9em; border-radius: .3em;
+  background: var(--m-accent); color: var(--m-fond); font-size: .72em; font-weight: 700;
+}
+.mq[data-police="etroite"] .mq-btn { color: #1D2733; }
+.mq-image { display: block; width: 100%; height: auto; aspect-ratio: 5 / 4; border-radius: .35em; }
+.mq-detail { padding: 0 1.1em 1.1em; margin-top: auto; font-size: .78em; }
+
+.mq-menu li, .mq-services li {
+  display: flex; justify-content: space-between; gap: 1em; padding: .45em 0;
+  border-top: 1px solid color-mix(in srgb, var(--m-texte) 16%, var(--m-fond));
+}
+.mq-menu b { color: var(--m-accent); }
+.mq-services li span { display: flex; align-items: center; gap: .6em; }
+.mq-services li span::before { content: ""; width: .7em; height: .7em; background: var(--m-accent); border-radius: .15em; }
+.mq-galerie, .mq-produits { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .7em; }
+.mq-galerie li, .mq-produits li { display: grid; gap: .35em; font-weight: 600; }
+.mq-galerie span, .mq-produits span { display: block; aspect-ratio: 4 / 3; border-radius: .25em; }
+.mq-galerie li:nth-child(1) span { background: linear-gradient(135deg, var(--m-accent) 0 35%, #3A4756 35% 70%, #8A97A6 70%); }
+.mq-galerie li:nth-child(2) span { background: linear-gradient(160deg, #8A97A6 0 45%, var(--m-accent) 45% 60%, #3A4756 60%); }
+.mq-galerie li:nth-child(3) span { background: linear-gradient(110deg, #3A4756 0 30%, #C7CED6 30% 72%, var(--m-accent) 72%); }
+.mq-produits span { aspect-ratio: 4 / 3; }
+.mq-produits li:nth-child(1) span { background: color-mix(in srgb, var(--m-accent) 35%, var(--m-fond)); }
+.mq-produits li:nth-child(2) span { background: color-mix(in srgb, var(--m-accent) 70%, var(--m-fond)); }
+.mq-produits li:nth-child(3) span { background: color-mix(in srgb, var(--m-texte) 25%, var(--m-fond)); }
+.mq-produits b { font-weight: 500; color: var(--m-accent); }
+.mq-sous { font-weight: 700; margin-bottom: .5em; }
+.mq-zones { display: flex; flex-wrap: wrap; gap: .45em; }
+.mq-zones li { padding: .3em .8em; border-radius: 1em; border: 1px solid var(--m-accent); color: var(--m-accent); font-weight: 600; }
+.mq-photos { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: repeat(2, 2.6em); gap: .45em; }
+.mq-photos li { border-radius: .2em; background: linear-gradient(150deg, #D9DADC, #8F949B); }
+.mq-photos li:first-child { grid-row: span 2; background: linear-gradient(160deg, #B9BCC1, #4B4F55); }
+.mq-photos li:nth-child(3) { background: linear-gradient(200deg, #EDEDEE, #A6AAB0); }
+.mq-photos li:nth-child(4) { grid-column: span 2; background: linear-gradient(120deg, #6F747D, #CFD1D4); }
 .secteurs-suite { margin-top: 2.5rem; font-size: clamp(1.1rem, 1.4vw, 1.3rem); color: var(--os-doux); }
 
 /* ---------- Forfaits ---------- */
