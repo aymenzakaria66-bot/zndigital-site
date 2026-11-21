@@ -60,8 +60,8 @@
   <main id="contenu">
 
     <section class="bloc bloc-sauge tete">
-      <svg class="fragment" viewBox="0 0 640 325" aria-hidden="true"><use href="#zn"/></svg>
       <div class="contenant">
+        <svg class="embleme haute" viewBox="328 0 312 325" style="--dx:-50px;--dy:-80px" aria-hidden="true"><polygon points="328,0 442,0 640,325 525,325"/></svg>
         <h1>Get your free demo</h1>
         <p class="chapo">Fill out the form and we'll get back to you within 24 hours. No commitment.</p>
       </div>
@@ -103,6 +103,29 @@
             <input id="siteActuel" name="siteActuel" type="text" inputmode="url" placeholder="yourbusiness.com">
           </div>
           <div class="champ">
+            <label for="secteur">Your industry</label>
+            <select id="secteur" name="secteur">
+              <option value="" data-cle="autre" data-titre="Your website, ready in a few days." data-bouton="Contact us" data-police="">Choose your industry</option>
+              <option value="Restaurant" data-cle="restaurant" data-titre="Market cuisine by the river." data-bouton="Book a table" data-police="serif">Restaurant</option>
+              <option value="Garage" data-cle="garage" data-titre="Your car in good hands." data-bouton="Book an appointment" data-police="large">Garage</option>
+              <option value="Construction and renovation" data-cle="construction" data-titre="Turnkey renovations." data-bouton="Request a quote" data-police="etroite">Construction and renovation</option>
+              <option value="Home services" data-cle="domicile" data-titre="A clean home, without the hassle." data-bouton="Book a cleaning" data-police="">Home services</option>
+              <option value="Retail store" data-cle="commerce" data-titre="Home linens made in Quebec." data-bouton="Shop now" data-police="serif">Retail store</option>
+              <option value="Freelancer" data-cle="autonome" data-titre="Family and event photographer." data-bouton="View portfolio" data-police="large">Freelancer</option>
+              <option value="Other" data-cle="autre" data-titre="Your website, ready in a few days." data-bouton="Contact us" data-police="">Other</option>
+            </select>
+          </div>
+          <fieldset class="champ">
+            <legend>Preferred style</legend>
+            <div class="choix">
+              <label><input type="radio" name="ambiance" value="Clean" data-fond="#F4F4F1" data-texte="#16191D" data-accent="#16191D" checked><span><i class="pastille" style="background:linear-gradient(135deg, #F4F4F1 50%, #16191D 50%)"></i>Clean</span></label>
+              <label><input type="radio" name="ambiance" value="Warm" data-fond="#2A1E1B" data-texte="#F3E9DC" data-accent="#D9A05B"><span><i class="pastille" style="background:linear-gradient(135deg, #2A1E1B 50%, #D9A05B 50%)"></i>Warm</span></label>
+              <label><input type="radio" name="ambiance" value="Natural" data-fond="#EAF2EF" data-texte="#173A33" data-accent="#2E7D6B"><span><i class="pastille" style="background:linear-gradient(135deg, #EAF2EF 50%, #2E7D6B 50%)"></i>Natural</span></label>
+              <label><input type="radio" name="ambiance" value="Elegant" data-fond="#F5EEE6" data-texte="#3B2A33" data-accent="#7D4F7F"><span><i class="pastille" style="background:linear-gradient(135deg, #F5EEE6 50%, #7D4F7F 50%)"></i>Elegant</span></label>
+              <label><input type="radio" name="ambiance" value="Bold" data-fond="#1D2733" data-texte="#F2F4F6" data-accent="#F2B705"><span><i class="pastille" style="background:linear-gradient(135deg, #1D2733 50%, #F2B705 50%)"></i>Bold</span></label>
+            </div>
+          </fieldset>
+          <div class="champ">
             <label for="forfait">Package you're considering</label>
             <select id="forfait" name="forfait">
               <option>Not sure yet</option>
@@ -121,7 +144,39 @@
           <p class="etat" id="etat" role="status" aria-live="polite"></p>
         </form>
 
-        <aside class="joindre">
+        <aside class="cote">
+          <div class="apercu-demo">
+          <h2>Preview of your demo</h2>
+          <p class="indice">It changes as you fill out the form. Your real demo will be custom-made.</p>
+          <div class="mq" id="apercu" style="--m-fond:#F4F4F1;--m-texte:#16191D;--m-accent:#16191D" aria-hidden="true">
+            <div class="mq-barre"><span></span><span></span><span></span><b id="apercu-url" data-defaut="yourbusiness.ca">yourbusiness.ca</b></div>
+            <div class="mq-site">
+              <div class="mq-nav"><span class="mq-nom" id="apercu-nom" data-defaut="Your business">Your business</span><span class="mq-liens"><span></span><span></span><span></span></span></div>
+              <div class="mq-hero">
+                <div>
+                  <p class="mq-titre" id="apercu-titre">Your website, ready in a few days.</p>
+                  <span class="mq-btn" id="apercu-btn">Contact us</span>
+                </div>
+                <svg class="mq-image" viewBox="0 0 100 80" preserveAspectRatio="xMidYMid slice">
+                  <rect width="100" height="80" style="fill:color-mix(in srgb, var(--m-accent) 22%, var(--m-fond))"/>
+                  <circle cx="72" cy="24" r="12" style="fill:color-mix(in srgb, var(--m-accent) 55%, var(--m-fond))"/>
+                  <polygon points="0,80 0,46 46,80" style="fill:color-mix(in srgb, var(--m-texte) 35%, var(--m-fond))"/>
+                  <polygon points="22,80 100,32 100,80" style="fill:var(--m-accent)"/>
+                </svg>
+              </div>
+              <div class="mq-detail">
+                <div data-pour="autre"><ul class="mq-cartes"><li></li><li></li><li></li></ul></div>
+                <div data-pour="restaurant" hidden><ul class="mq-menu"><li><span>Salmon tartare</span><b>$18</b></li><li><span>Flank steak, house fries</span><b>$27</b></li><li><span>Sugar pie</span><b>$9</b></li></ul></div>
+                <div data-pour="garage" hidden><ul class="mq-services"><li><span>Oil change</span><b>$59.95</b></li><li><span>Winter tires</span><b>from $80</b></li><li><span>Brakes</span><b>from $149</b></li></ul></div>
+                <div data-pour="construction" hidden><ul class="mq-galerie"><li><span></span>Kitchen</li><li><span></span>Basement</li><li><span></span>Deck</li></ul></div>
+                <div data-pour="domicile" hidden><p class="mq-sous">Areas served</p><ul class="mq-zones"><li>Brossard</li><li>Longueuil</li><li>La Prairie</li><li>Candiac</li></ul></div>
+                <div data-pour="commerce" hidden><ul class="mq-produits"><li><span></span>Tablecloth<b>$64</b></li><li><span></span>Cushion<b>$38</b></li><li><span></span>Napkins<b>$24</b></li></ul></div>
+                <div data-pour="autonome" hidden><ul class="mq-photos"><li></li><li></li><li></li><li></li></ul></div>
+              </div>
+            </div>
+          </div>
+        </div>
+          <div class="joindre">
           <h2>Contact us</h2>
           <dl>
             <div><dt>Email</dt><dd><a href="mailto:zndigitalcreation@gmail.com">zndigitalcreation@gmail.com</a></dd></div>
@@ -129,6 +184,7 @@
             <div><dt>Area served</dt><dd>Greater Montreal</dd></div>
             <div><dt>Instagram</dt><dd><a href="https://www.instagram.com/zndigitalcreation/" target="_blank" rel="noopener">@zndigitalcreation</a></dd></div>
           </dl>
+          </div>
         </aside>
       </div>
     </section>

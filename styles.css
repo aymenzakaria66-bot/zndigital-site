@@ -355,8 +355,8 @@ main > .bloc:last-child { padding-bottom: var(--respire); }
 .projets .attente { color: var(--encre-mi); }
 
 /* ---------- Prix (accueil) ---------- */
-.prix .contenant { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 2rem 4rem; }
-.prix h2 { font-size: clamp(2.2rem, 5vw, 4.6rem); max-width: 15ch; }
+.prix .contenant { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); align-items: center; gap: 2.5rem clamp(2rem, 6vw, 6rem); }
+.prix h2 { font-size: clamp(2rem, 4vw, 3.6rem); max-width: 15ch; }
 
 /* ---------- Appel à l'action ---------- */
 .appel .contenant > p { margin-top: 1rem; font-size: clamp(1.1rem, 1.4vw, 1.3rem); color: var(--os-doux); }
@@ -505,7 +505,7 @@ main > .bloc:last-child { padding-bottom: var(--respire); }
 
 /* ---------- Contact ---------- */
 .contact-grille {
-  display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
   gap: 3rem clamp(2rem, 6vw, 6rem); align-items: start;
 }
 form { display: grid; gap: 1.5rem; }
@@ -628,4 +628,124 @@ body::before {
   .bouton, .ecran, .telephone, .entete, .faq summary::after, .menu-bouton svg { transition: none; }
   .fragment { transform: rotate(-7deg); }
   .fragment.gauche { transform: rotate(6deg); }
+}
+
+/* ---------- Notre engagement ---------- */
+.engagement {
+  position: relative; max-width: 30rem;
+  padding: 1.8rem 1.9rem 1.6rem; background: var(--encre); color: var(--os);
+  clip-path: polygon(0 0, calc(100% - 1.6rem) 0, 100% 1.6rem, 100% 100%, 1.6rem 100%, 0 calc(100% - 1.6rem));
+  transform: rotate(-1.2deg);
+}
+.engagement-titre { font-variation-settings: var(--large); font-weight: 800; font-size: 1.35rem; margin-bottom: .7rem; }
+.engagement p + p { margin-top: .6rem; }
+.engagement p:not(.engagement-titre):not(.engagement-signature) { color: var(--os-doux); }
+.engagement-signature {
+  display: flex; align-items: center; gap: .6rem; margin-top: 1.2rem !important;
+  padding-top: 1rem; border-top: 1px solid var(--encre-trait);
+  font-variation-settings: var(--large); font-weight: 700; font-size: .85rem; letter-spacing: .2em; text-transform: uppercase;
+}
+.engagement-signature svg { height: 1.3rem; width: auto; fill: var(--sauge); }
+.plans + .mention + .engagement { margin-top: 2rem; }
+
+/* ---------- Emblème : une pièce du logo par page ---------- */
+.tete .contenant {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: clamp(2rem, 5vw, 5rem); align-items: center;
+}
+.tete .contenant > :not(.embleme) { grid-column: 1; }
+.embleme { fill: var(--encre); pointer-events: none; animation: embleme .9s var(--ease) .15s both; }
+.tete .embleme { grid-column: 2; grid-row: 1 / span 3; }
+.embleme.haute { height: clamp(10rem, 18vw, 16rem); width: auto; }
+.embleme.large { width: clamp(12rem, 26vw, 24rem); height: auto; }
+.embleme.sur-encre {
+  position: absolute; right: var(--marge); top: 50%; translate: 0 -50%;
+  height: 125%; fill: var(--sauge);
+}
+@keyframes embleme { from { opacity: 0; transform: translate(var(--dx), var(--dy)); } }
+
+@media (max-width: 48rem) {
+  .tete .contenant { grid-template-columns: 1fr; }
+  .tete .embleme { grid-column: 1; grid-row: auto; justify-self: start; margin-bottom: 1.5rem; }
+  .embleme.haute { height: 5.5rem; }
+  .embleme.large { width: 11rem; }
+  .embleme.sur-encre { display: none; }
+  .prix .contenant { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .embleme { animation: none; }
+}
+
+/* ---------- Contact : aperçu de démo en direct ---------- */
+.cote { position: sticky; top: 6rem; display: grid; gap: 2.5rem; }
+.apercu-demo { container-type: inline-size; }
+.apercu-demo h2 { font-size: clamp(1.4rem, 2.2vw, 1.8rem); }
+.apercu-demo .indice { display: block; margin: .5rem 0 1.3rem; }
+.apercu-demo .mq-site, .apercu-demo .mq-btn { transition: background-color .35s, color .35s; }
+.mq-cartes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .7em; }
+.mq-cartes li { height: 4.2em; border-radius: .3em; background: color-mix(in srgb, var(--m-accent) 16%, var(--m-fond)); }
+.pastille {
+  display: inline-block; width: .95em; height: .95em; margin-right: .5em; vertical-align: -.12em;
+  border-radius: 50%; box-shadow: 0 0 0 1px var(--os-doux);
+}
+@media (max-width: 60rem) {
+  .contact-grille { grid-template-columns: 1fr; }
+  .cote { display: contents; }
+  .apercu-demo { order: -1; }
+  .joindre { order: 1; }
+}
+
+/* Un élément masqué reste masqué, même si une règle lui donne un display */
+[hidden] { display: none !important; }
+
+/* ---------- Forfaits : quiz et suggestion ---------- */
+.quiz {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem 2.5rem;
+  margin-top: clamp(2rem, 4vw, 3rem); padding: 1.6rem 1.8rem 1.4rem;
+  border: 2px solid var(--encre);
+}
+.quiz-titre, .quiz-resultat { grid-column: 1 / -1; }
+.quiz-titre { font-variation-settings: var(--large); font-weight: 800; font-size: 1.3rem; }
+.quiz-resultat { font-weight: 700; font-size: 1.1rem; min-height: 1.5em; }
+.quiz .choix span { border-color: var(--encre); }
+.quiz .choix input:checked + span { background: var(--encre); border-color: var(--encre); color: var(--os); }
+.quiz .choix input:focus-visible + span { outline-color: var(--encre); }
+.plan { padding: 1.4rem 1.4rem 1.6rem; transition: background-color .35s, color .35s; }
+.plan.recommande { background: var(--encre); color: var(--os); }
+.plan.recommande .ideal { color: var(--os-doux); }
+.plan.recommande .puces li::before { background: var(--sauge); }
+.plan.recommande::before {
+  content: attr(data-badge); display: inline-block; margin-bottom: .9rem;
+  padding: .3rem .7rem; background: var(--sauge); color: var(--encre);
+  font-size: .8rem; font-weight: 700;
+}
+
+/* ---------- FAQ en conversation ---------- */
+.faq.conversation { border-top: 0; display: grid; gap: 1.3rem; max-width: 52rem; }
+.faq.conversation details { border-bottom: 0; }
+.faq.conversation summary {
+  width: fit-content; max-width: 100%; padding: .9rem 1.2rem; gap: 1.2rem;
+  background: color-mix(in srgb, var(--sauge) 40%, var(--os));
+  border-radius: 1.2rem 1.2rem 1.2rem .3rem; font-size: 1.05rem;
+}
+.faq.conversation summary:hover { background: color-mix(in srgb, var(--sauge) 60%, var(--os)); }
+.reponse { display: flex; justify-content: flex-end; align-items: flex-end; gap: .7rem; margin-top: .7rem; }
+.faq .reponse p {
+  max-width: 34rem; padding: .9rem 1.2rem; color: var(--os); background: var(--encre);
+  border-radius: 1.2rem 1.2rem .3rem 1.2rem;
+}
+.avatar {
+  order: 2; flex: none; display: grid; place-items: center;
+  width: 2.3rem; height: 2.3rem; border-radius: 50%; background: var(--encre);
+}
+.avatar svg { width: 1.45rem; height: auto; fill: var(--sauge); }
+.faq details[open] .reponse { animation: bulle .35s var(--ease) both; }
+@keyframes bulle { from { opacity: 0; transform: translateY(.6rem); } }
+
+@media (max-width: 60rem) {
+  .quiz { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .faq details[open] .reponse { animation: none; }
+  .plan { transition: none; }
 }

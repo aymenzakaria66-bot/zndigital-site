@@ -60,8 +60,8 @@
   <main id="contenu">
 
     <section class="bloc bloc-sauge tete">
-      <svg class="fragment" viewBox="0 0 640 325" aria-hidden="true"><use href="#zn"/></svg>
       <div class="contenant">
+        <svg class="embleme haute" viewBox="0 0 286 325" style="--dx:60px;--dy:-60px" aria-hidden="true"><polygon points="212,0 286,0 286,63 72,325 0,325 0,264"/></svg>
         <h1>Our packages</h1>
         <p class="chapo">Every website starts with a free demo. You only pay if you're satisfied.</p>
       </div>
@@ -70,8 +70,37 @@
     <section class="bloc bloc-os">
       <div class="contenant">
         <h2>Building your website</h2>
+        <div class="quiz" data-quiz hidden
+          data-noms='{"essentiel":"Essential","pro":"Pro","complet":"Complete"}'
+          data-phrase="Our suggestion: the {plan} package."
+          data-attente="Answer the three questions to see our suggestion.">
+          <p class="quiz-titre">Which package is right for you?</p>
+          <fieldset class="champ">
+            <legend>How many pages do you need?</legend>
+            <div class="choix">
+              <label><input type="radio" name="q1" value="1"><span>Just one</span></label>
+              <label><input type="radio" name="q1" value="2"><span>2 to 5</span></label>
+              <label><input type="radio" name="q1" value="3"><span>More than 5</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="champ">
+            <legend>Do you want to edit your website yourself?</legend>
+            <div class="choix">
+              <label><input type="radio" name="q2" value="oui"><span>Yes</span></label>
+              <label><input type="radio" name="q2" value="non"><span>No</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="champ">
+            <legend>Do you want to show your work in photos?</legend>
+            <div class="choix">
+              <label><input type="radio" name="q3" value="oui"><span>Yes</span></label>
+              <label><input type="radio" name="q3" value="non"><span>No</span></label>
+            </div>
+          </fieldset>
+          <p class="quiz-resultat" aria-live="polite"></p>
+        </div>
         <ul class="plans">
-          <li class="plan">
+          <li class="plan" data-plan="essentiel" data-badge="Suggested for you">
             <h3>Essential</h3>
             <p class="ideal">Ideal for getting online quickly.</p>
             <p class="prix-plan"><small>Starting at</small>$500</p>
@@ -83,7 +112,7 @@
               <li>2 rounds of revisions included</li>
             </ul>
           </li>
-          <li class="plan">
+          <li class="plan" data-plan="pro" data-badge="Suggested for you">
             <h3>Pro</h3>
             <p class="ideal">To present your services in detail.</p>
             <p class="prix-plan"><small>Starting at</small>$1,500</p>
@@ -97,7 +126,7 @@
               <li>2 rounds of revisions included</li>
             </ul>
           </li>
-          <li class="plan">
+          <li class="plan" data-plan="complet" data-badge="Suggested for you">
             <h3>Complete</h3>
             <p class="ideal">For businesses that want it all.</p>
             <p class="prix-plan"><small>Starting at</small>$2,500</p>
@@ -113,6 +142,12 @@
           </li>
         </ul>
         <p class="mention">Taxes not included.</p>
+        <div class="engagement">
+          <p class="engagement-titre">Our promise</p>
+          <p>We build your demo for free. If you don't like it, you pay nothing: no deposit, no commitment.</p>
+          <p>You only pay 50% once you approve it.</p>
+          <p class="engagement-signature"><svg viewBox="0 0 640 325" aria-hidden="true"><use href="#zn"/></svg>ZN Digital</p>
+        </div>
       </div>
     </section>
 

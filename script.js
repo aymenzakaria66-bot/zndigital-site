@@ -10,6 +10,7 @@ const T = document.documentElement.lang.startsWith("en") ? {
   },
   nom: "Name", entreprise: "Business", courriel: "Email", telephone: "Phone",
   projet: "Project", siteActuel: "Current website", forfait: "Package considered",
+  secteur: "Industry", ambiance: "Preferred style", nonPrecise: "Not specified",
   sujet: "Free demo request",
   envoye: "Your email app opened with your request. Attach your photos if you have any, then send the email.",
 } : {
@@ -20,6 +21,7 @@ const T = document.documentElement.lang.startsWith("en") ? {
   },
   nom: "Nom", entreprise: "Entreprise", courriel: "Courriel", telephone: "Téléphone",
   projet: "Projet", siteActuel: "Site actuel", forfait: "Forfait envisagé",
+  secteur: "Secteur", ambiance: "Ambiance souhaitée", nonPrecise: "Non précisé",
   sujet: "Demande de démo gratuite",
   envoye: "Votre application de courriel s'est ouverte avec votre demande. Joignez-y vos photos si vous en avez, puis envoyez le courriel.",
 };
@@ -84,6 +86,38 @@ if (formulaire) {
     if (e.target.closest(".champ.erreur")) verifier(e.target);
   });
 
+  // Aperçu de démo : se met à jour à mesure que le visiteur remplit le formulaire
+  const apercu = document.getElementById("apercu");
+  if (apercu) {
+    const nom = document.getElementById("apercu-nom");
+    const url = document.getElementById("apercu-url");
+    const titre = document.getElementById("apercu-titre");
+    const bouton = document.getElementById("apercu-btn");
+    const details = apercu.querySelectorAll("[data-pour]");
+    const adresse = (texte) => texte.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]/g, "");
+
+    const majApercu = () => {
+      const entreprise = formulaire.entreprise.value.trim();
+      nom.textContent = entreprise || nom.dataset.defaut;
+      url.textContent = adresse(entreprise) ? adresse(entreprise) + ".ca" : url.dataset.defaut;
+
+      const choix = formulaire.secteur.selectedOptions[0];
+      titre.textContent = choix.dataset.titre;
+      bouton.textContent = choix.dataset.bouton;
+      if (choix.dataset.police) apercu.dataset.police = choix.dataset.police;
+      else delete apercu.dataset.police;
+      details.forEach((d) => { d.hidden = d.dataset.pour !== choix.dataset.cle; });
+
+      const ambiance = formulaire.querySelector('input[name="ambiance"]:checked');
+      apercu.style.setProperty("--m-fond", ambiance.dataset.fond);
+      apercu.style.setProperty("--m-texte", ambiance.dataset.texte);
+      apercu.style.setProperty("--m-accent", ambiance.dataset.accent);
+    };
+    formulaire.addEventListener("input", majApercu);
+    formulaire.addEventListener("change", majApercu);
+    majApercu();
+  }
+
   formulaire.addEventListener("submit", (e) => {
     e.preventDefault();
     const f = formulaire;
@@ -99,6 +133,8 @@ if (formulaire) {
     lignes.push(`${T.courriel} : ${f.courriel.value}`);
     if (f.telephone.value) lignes.push(`${T.telephone} : ${f.telephone.value}`);
     lignes.push(`${T.projet} : ${f.type.value}`);
+    lignes.push(`${T.secteur} : ${f.secteur.value || T.nonPrecise}`);
+    lignes.push(`${T.ambiance} : ${f.ambiance.value}`);
     if (!champRefonte.hidden && f.siteActuel.value) lignes.push(`${T.siteActuel} : ${f.siteActuel.value}`);
     lignes.push(`${T.forfait} : ${f.forfait.value}`, "", f.message.value);
     const corps = lignes.join("\n");
@@ -108,6 +144,26 @@ if (formulaire) {
       `mailto:${COURRIEL_CONTACT}?subject=${encodeURIComponent(sujet)}&body=${encodeURIComponent(corps)}`;
     etat.textContent = T.envoye;
   });
+}
+
+/* ---------- Quiz des forfaits ---------- */
+const quiz = document.querySelector("[data-quiz]");
+if (quiz) {
+  quiz.hidden = false;
+  const plans = document.querySelectorAll(".plan[data-plan]");
+  const resultat = quiz.querySelector(".quiz-resultat");
+  const noms = JSON.parse(quiz.dataset.noms);
+  const reponse = (nom) => quiz.querySelector(`input[name="${nom}"]:checked`)?.value;
+  const majQuiz = () => {
+    const [pages, modifier, photos] = [reponse("q1"), reponse("q2"), reponse("q3")];
+    if (!pages || !modifier || !photos) { resultat.textContent = quiz.dataset.attente; return; }
+    const choix = pages === "3" || modifier === "oui" ? "complet"
+      : pages === "2" || photos === "oui" ? "pro" : "essentiel";
+    plans.forEach((p) => p.classList.toggle("recommande", p.dataset.plan === choix));
+    resultat.textContent = quiz.dataset.phrase.replace("{plan}", noms[choix]);
+  };
+  quiz.addEventListener("change", majQuiz);
+  majQuiz();
 }
 
 /* ---------- Effets ---------- */

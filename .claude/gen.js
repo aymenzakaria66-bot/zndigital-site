@@ -2,7 +2,7 @@
 // node gen.js <dossier du site>
 const fs = require("fs");
 const path = require("path");
-const { maquette } = require("./maquettes.js");
+const { maquette, champsApercu, apercu } = require("./maquettes.js");
 const out = process.argv[2];
 
 const BASE = "https://aymenzakaria66-bot.github.io/zndigital-site/";
@@ -75,6 +75,55 @@ const vitrine = (L) => `<a class="vitrine" href="https://zkdetails.ca" target="_
             <img src="${L.prefixe}assets/zkdetails-mobile.jpg" alt="${L.altMobile}" width="1170" height="2532" loading="lazy">
           </div>
         </a>`;
+
+
+/* Notre engagement : la garantie mise en avant */
+const engagement = (fr) => `<div class="engagement">
+          <p class="engagement-titre">${fr ? "Notre engagement" : "Our promise"}</p>
+          <p>${fr ? "On prépare votre démo gratuitement. Si elle ne vous plaît pas, vous ne payez rien : aucun dépôt, aucun engagement."
+                  : "We build your demo for free. If you don't like it, you pay nothing: no deposit, no commitment."}</p>
+          <p>${fr ? "Vous payez 50&nbsp;% seulement quand vous l'acceptez." : "You only pay 50% once you approve it."}</p>
+          <p class="engagement-signature"><svg viewBox="0 0 640 325" aria-hidden="true"><use href="#zn"/></svg>ZN Digital</p>
+        </div>`;
+
+/* Une pièce du logo ZN comme emblème de chaque page */
+const PIECES = [
+  { points: "7,0 191,0 130,71 7,71", vb: "7 0 184 71", forme: "large", d: "-80px,0px" },
+  { points: "212,0 286,0 286,63 72,325 0,325 0,264", vb: "0 0 286 325", forme: "haute", d: "60px,-60px" },
+  { points: "155,254 282,254 282,325 94,325", vb: "94 254 188 71", forme: "large", d: "80px,0px" },
+  { points: "328,32 422,185 422,325 328,325", vb: "328 32 94 293", forme: "haute", d: "0px,80px" },
+  { points: "328,0 442,0 640,325 525,325", vb: "328 0 312 325", forme: "haute", d: "-50px,-80px" },
+  { points: "546,0 640,0 640,293 546,139", vb: "546 0 94 293", forme: "haute", d: "0px,-80px" },
+];
+const embleme = (n, classe = "") => {
+  const p = PIECES[n];
+  const [dx, dy] = p.d.split(",");
+  return `<svg class="embleme ${p.forme}${classe ? " " + classe : ""}" viewBox="${p.vb}" style="--dx:${dx};--dy:${dy}" aria-hidden="true"><polygon points="${p.points}"/></svg>`;
+};
+
+
+/* Quiz « Quel forfait vous convient ? » (affiché seulement si JavaScript est actif) */
+const quizForfaits = (fr) => {
+  const question = (nom, legende, choix) => `<fieldset class="champ">
+            <legend>${legende}</legend>
+            <div class="choix">
+              ${choix.map(([valeur, texte]) => `<label><input type="radio" name="${nom}" value="${valeur}"><span>${texte}</span></label>`).join("\n              ")}
+            </div>
+          </fieldset>`;
+  const ouiNon = fr ? [["oui", "Oui"], ["non", "Non"]] : [["oui", "Yes"], ["non", "No"]];
+  const noms = JSON.stringify({ essentiel: fr ? "Essentiel" : "Essential", pro: "Pro", complet: fr ? "Complet" : "Complete" });
+  return `<div class="quiz" data-quiz hidden
+          data-noms='${noms}'
+          data-phrase="${fr ? "Notre suggestion : le forfait {plan}." : "Our suggestion: the {plan} package."}"
+          data-attente="${fr ? "Répondez aux trois questions pour voir notre suggestion." : "Answer the three questions to see our suggestion."}">
+          <p class="quiz-titre">${fr ? "Quel forfait vous convient&nbsp;?" : "Which package is right for you?"}</p>
+          ${question("q1", fr ? "Combien de pages vous faut-il&nbsp;?" : "How many pages do you need?",
+            fr ? [["1", "Une seule"], ["2", "2 à 5"], ["3", "Plus de 5"]] : [["1", "Just one"], ["2", "2 to 5"], ["3", "More than 5"]])}
+          ${question("q2", fr ? "Voulez-vous modifier votre site vous-même&nbsp;?" : "Do you want to edit your website yourself?", ouiNon)}
+          ${question("q3", fr ? "Voulez-vous montrer vos réalisations en photos&nbsp;?" : "Do you want to show your work in photos?", ouiNon)}
+          <p class="quiz-resultat" aria-live="polite"></p>
+        </div>`;
+};
 
 const url = (dossier, f) => BASE + (dossier ? dossier + "/" : "") + (f === "index.html" ? "" : f);
 
@@ -215,8 +264,8 @@ const jsonLd = (description, region) => `
   }
   </script>`;
 
-const plan = (debut, nom, prix, ideal, items) => `
-          <li class="plan">
+const plan = (debut, nom, prix, ideal, items, id = "", badge = "") => `
+          <li class="plan" data-plan="${id}" data-badge="${badge}">
             <h3>${nom}</h3>
             <p class="ideal">${ideal}</p>
             <p class="prix-plan"><small>${debut}</small>${prix}</p>
@@ -227,7 +276,7 @@ const plan = (debut, nom, prix, ideal, items) => `
 
 const faqListe = (qr) => qr.map(([q, r]) => `<details>
             <summary>${q}</summary>
-            <p>${r}</p>
+            <div class="reponse"><span class="avatar" aria-hidden="true"><svg viewBox="0 0 640 325"><use href="#zn"/></svg></span><p>${r}</p></div>
           </details>`).join("\n          ");
 
 /* =====================================================================
@@ -321,7 +370,7 @@ function contenu(code) {
     <section class="bloc bloc-sauge">
       <div class="contenant">
         <h2>${fr ? "Nos réalisations" : "Our work"}</h2>
-        <p class="intro">${fr ? "Quelques sites que nous avons créés." : "A few websites we've built."}</p>
+        <p class="intro">${fr ? "Des sites que nous avons conçus et mis en ligne." : "Websites we've designed and launched."}</p>
         ${vitrine(L)}
         <ul class="projets">
           <li><a class="domaine" href="https://zkdetails.ca" target="_blank" rel="noopener">zkdetails.ca</a><span>${fr ? "ZK Details, esthétique automobile mobile à La Prairie" : "ZK Details, mobile car detailing in La Prairie"}</span></li>
@@ -333,14 +382,18 @@ function contenu(code) {
 
     <section class="bloc bloc-os inverse prix">
       <div class="contenant">
-        <h2>${fr ? "Des sites professionnels à partir de 500&nbsp;$." : "Professional websites starting at $500."}</h2>
-        <a class="lien" href="forfaits.html">${fr ? "Voir les forfaits" : "See pricing"}</a>
+        <div>
+          <h2>${fr ? "Des sites professionnels à partir de 500&nbsp;$." : "Professional websites starting at $500."}</h2>
+          <p class="suite"><a class="lien" href="forfaits.html">${fr ? "Voir les forfaits" : "See pricing"}</a></p>
+        </div>
+        ${engagement(fr)}
       </div>
     </section>
 
     <section class="bloc bloc-encre appel">
       ${fragment("gauche")}
       <div class="contenant">
+        ${embleme(5, "sur-encre")}
         <h2>${fr ? "Prêt à voir votre futur site&nbsp;?" : "Ready to see your future website?"}</h2>
         <p>${fr ? "La démo est gratuite et sans engagement." : "The demo is free, with no commitment."}</p>
         ${demo("bouton-os")}
@@ -357,8 +410,8 @@ function contenu(code) {
       : "Try before you buy: ZN Digital shows you a free preview of your future website. Local South Shore team, demo in a few days, affordable prices.",
     corps: `
     <section class="bloc bloc-sauge tete">
-      ${fragment()}
       <div class="contenant">
+        ${embleme(0)}
         <h1>${fr ? "Votre entreprise mérite d'être trouvée en ligne." : "Your business deserves to be found online."}</h1>
         <p class="chapo">${fr ? "Aujourd'hui, la majorité de vos clients vous cherchent sur Google avant de vous appeler. Sans site professionnel, ils choisissent quelqu'un d'autre."
                               : "Today, most of your customers look you up on Google before they call. Without a professional website, they choose someone else."}</p>
@@ -500,8 +553,8 @@ function contenu(code) {
       : "Professional websites starting at $500: Essential, Pro and Complete packages, hosting from $25 per month. Every website starts with a free demo.",
     corps: `
     <section class="bloc bloc-sauge tete">
-      ${fragment()}
       <div class="contenant">
+        ${embleme(1)}
         <h1>${fr ? "Nos forfaits" : "Our packages"}</h1>
         <p class="chapo">${fr ? "Chaque site commence par une démo gratuite. Vous payez seulement si vous êtes satisfait."
                               : "Every website starts with a free demo. You only pay if you're satisfied."}</p>
@@ -511,21 +564,26 @@ function contenu(code) {
     <section class="bloc bloc-os">
       <div class="contenant">
         <h2>${fr ? "Création de votre site" : "Building your website"}</h2>
+        ${quizForfaits(fr)}
         <ul class="plans">${plan(debut, fr ? "Essentiel" : "Essential", fr ? "500&nbsp;$" : "$500",
           fr ? "Idéal pour être présent en ligne rapidement." : "Ideal for getting online quickly.",
           fr ? ["Site d'une page ou multipage", "Bilingue FR/EN", "Formulaire de contact", domaine, revisions]
-             : ["One-page or multi-page website", "Bilingual FR/EN", "Contact form", domaine, revisions]
+             : ["One-page or multi-page website", "Bilingual FR/EN", "Contact form", domaine, revisions],
+          "essentiel", fr ? "Suggéré pour vous" : "Suggested for you"
         )}${plan(debut, "Pro", fr ? "1&nbsp;500&nbsp;$" : "$1,500",
           fr ? "Pour présenter vos services en détail." : "To present your services in detail.",
           fr ? ["Jusqu'à 5 pages", "Bilingue FR/EN", "Galerie photos", "Formulaire de contact", "Optimisation de base pour Google", domaine, revisions]
-             : ["Up to 5 pages", "Bilingual FR/EN", "Photo gallery", "Contact form", "Basic Google optimization", domaine, revisions]
+             : ["Up to 5 pages", "Bilingual FR/EN", "Photo gallery", "Contact form", "Basic Google optimization", domaine, revisions],
+          "pro", fr ? "Suggéré pour vous" : "Suggested for you"
         )}${plan(debut, fr ? "Complet" : "Complete", fr ? "2&nbsp;500&nbsp;$" : "$2,500",
           fr ? "Pour les entreprises qui veulent tout." : "For businesses that want it all.",
           fr ? ["Pages illimitées", "Bilingue FR/EN", "Possibilité de modifier votre site vous-même", "Galerie, avis clients, carte Google", "Optimisation pour Google", domaine, revisions]
-             : ["Unlimited pages", "Bilingual FR/EN", "Option to edit your website yourself", "Gallery, customer reviews, Google map", "Google optimization", domaine, revisions]
+             : ["Unlimited pages", "Bilingual FR/EN", "Option to edit your website yourself", "Gallery, customer reviews, Google map", "Google optimization", domaine, revisions],
+          "complet", fr ? "Suggéré pour vous" : "Suggested for you"
         )}
         </ul>
         <p class="mention">${fr ? "Taxes en sus." : "Taxes not included."}</p>
+        ${engagement(fr)}
       </div>
     </section>
 
@@ -579,15 +637,15 @@ function contenu(code) {
     fichier: "portfolio.html",
     titre: fr ? "Nos réalisations | ZN Digital" : "Our Work | ZN Digital",
     description: fr
-      ? "Découvrez les sites créés par ZN Digital pour des entreprises d'ici, dont ZK Details, esthétique automobile mobile à La Prairie."
-      : "See websites ZN Digital has built for local businesses, including ZK Details, mobile car detailing in La Prairie.",
+      ? "Découvrez les sites conçus par ZN Digital, dont ZK Details, et des exemples de démos pour chaque secteur."
+      : "See websites designed by ZN Digital, including ZK Details, and sample demos for every industry.",
     corps: `
     <section class="bloc bloc-sauge tete">
-      ${fragment()}
       <div class="contenant">
+        ${embleme(2)}
         <h1>${fr ? "Nos réalisations" : "Our work"}</h1>
-        <p class="chapo">${fr ? "Voici quelques sites que nous avons créés pour des entreprises d'ici."
-                              : "Here are a few websites we've built for local businesses."}</p>
+        <p class="chapo">${fr ? "Un site que nous avons conçu et mis en ligne, et des exemples de démos qu'on peut vous préparer."
+                              : "A website we designed and launched, and sample demos we can prepare for you."}</p>
       </div>
     </section>
 
@@ -619,7 +677,24 @@ function contenu(code) {
       </div>
     </section>
 
-    <section class="bloc bloc-sauge inverse">
+    <section class="bloc bloc-encre inverse">
+      ${fragment()}
+      <div class="contenant">
+        <h2>${fr ? "Exemples de démos" : "Sample demos"}</h2>
+        <p class="intro">${fr ? "Ces entreprises sont fictives : elles montrent le genre de site qu'on peut préparer pour votre secteur."
+                              : "These businesses are fictional: they show the kind of website we can prepare for your industry."}</p>
+        <ul class="secteurs">
+          ${(fr ? ["Restaurant", "Garage", "Construction et rénovation", "Services à domicile", "Commerce de détail", "Travailleur autonome"]
+                : ["Restaurant", "Garage", "Construction and renovation", "Home services", "Retail store", "Freelancer"])
+            .map((t, i) => `<li>
+            ${maquette(i, fr)}
+            <h3>${t}</h3>
+          </li>`).join("\n          ")}
+        </ul>
+      </div>
+    </section>
+
+    <section class="bloc bloc-sauge">
       <div class="contenant deux">
         <h2>Nafsi</h2>
         <div class="texte">
@@ -668,15 +743,16 @@ function contenu(code) {
       : "Free demo, timelines, domain name, hosting, payment: answers to common questions about building your website with ZN Digital.",
     corps: `
     <section class="bloc bloc-sauge tete">
-      ${fragment()}
       <div class="contenant">
+        ${embleme(3)}
         <h1>${fr ? "Questions fréquentes" : "Frequently asked questions"}</h1>
+        <p class="chapo">${fr ? "Les questions qu'on nous pose le plus souvent, et nos réponses." : "The questions we hear most often, and our answers."}</p>
       </div>
     </section>
 
     <section class="bloc bloc-os">
       <div class="contenant">
-        <div class="faq">
+        <div class="faq conversation">
           ${faqListe(qr)}
         </div>
       </div>
@@ -701,8 +777,8 @@ function contenu(code) {
       : "Request your free demo: fill out the form and ZN Digital will contact you within 24 hours. No commitment. Greater Montreal.",
     corps: `
     <section class="bloc bloc-sauge tete">
-      ${fragment()}
       <div class="contenant">
+        ${embleme(4)}
         <h1>${fr ? "Obtenez votre démo gratuite" : "Get your free demo"}</h1>
         <p class="chapo">${fr ? "Remplissez le formulaire et on vous contacte sous 24&nbsp;h. Aucun engagement."
                               : "Fill out the form and we'll get back to you within 24 hours. No commitment."}</p>
@@ -744,6 +820,7 @@ function contenu(code) {
             <label for="siteActuel">${fr ? "Adresse de votre site actuel" : "Your current website address"}</label>
             <input id="siteActuel" name="siteActuel" type="text" inputmode="url" placeholder="${fr ? "votreentreprise.com" : "yourbusiness.com"}">
           </div>
+          ${champsApercu(fr)}
           <div class="champ">
             <label for="forfait">${fr ? "Forfait envisagé" : "Package you're considering"}</label>
             <select id="forfait" name="forfait">
@@ -764,7 +841,9 @@ function contenu(code) {
           <p class="etat" id="etat" role="status" aria-live="polite"></p>
         </form>
 
-        <aside class="joindre">
+        <aside class="cote">
+          ${apercu(fr)}
+          <div class="joindre">
           <h2>${L.joindre}</h2>
           <dl>
             <div><dt>${fr ? "Courriel" : "Email"}</dt><dd><a href="mailto:zndigitalcreation@gmail.com">zndigitalcreation@gmail.com</a></dd></div>
@@ -772,6 +851,7 @@ function contenu(code) {
             <div><dt>${fr ? "Région desservie" : "Area served"}</dt><dd>${L.region}</dd></div>
             <div><dt>Instagram</dt><dd><a href="https://www.instagram.com/zndigitalcreation/" target="_blank" rel="noopener">@zndigitalcreation</a></dd></div>
           </dl>
+          </div>
         </aside>
       </div>
     </section>`,
