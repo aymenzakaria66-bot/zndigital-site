@@ -3,6 +3,7 @@
 const fs = require("fs");
 const path = require("path");
 const { maquette, champsApercu, apercu } = require("./maquettes.js");
+const { bandeau, rassurance, avantApres, comparatif, ensuite, barreMobile } = require("./extras.js");
 const out = process.argv[2];
 
 const BASE = "https://aymenzakaria66-bot.github.io/zndigital-site/";
@@ -187,6 +188,7 @@ function page(L, { fichier, titre, description, corps, tete = "" }) {
 ${corps}
   </main>
 
+  ${barreMobile(L.html.startsWith("fr"))}
   <footer class="pied">
     <div class="contenant pied-grille">
       <div class="pied-marque">
@@ -313,9 +315,11 @@ function contenu(code) {
             ${demo()}
             <a class="lien" href="portfolio.html">${fr ? "Voir nos réalisations" : "See our work"}</a>
           </div>
+          ${rassurance(fr)}
         </div>
         ${chantier(L)}
       </div>
+      ${bandeau(fr)}
     </section>
 
     <section class="bloc bloc-os">
@@ -346,6 +350,7 @@ function contenu(code) {
       </div>
     </section>
 
+${avantApres(fr)}
     <section class="bloc bloc-encre inverse">
       ${fragment()}
       <div class="contenant deux">
@@ -433,6 +438,7 @@ function contenu(code) {
       </div>
     </section>
 
+${comparatif(fr)}
     <section class="bloc bloc-encre inverse">
       ${fragment()}
       <div class="contenant">
@@ -852,7 +858,8 @@ function contenu(code) {
           </div>
         </aside>
       </div>
-    </section>`,
+    </section>
+${ensuite(fr)}`,
   };
 
   return [accueil, presentation, forfaits, portfolio, faq, contact];

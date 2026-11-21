@@ -166,6 +166,32 @@ if (quiz) {
   majQuiz();
 }
 
+/* ---------- Avant / après à glisser ---------- */
+document.querySelectorAll(".comparateur").forEach((comparateur) => {
+  const curseur = comparateur.querySelector(".cmp-curseur");
+  let touche = false;
+  const placer = (v) => comparateur.style.setProperty("--pos", v + "%");
+  curseur.addEventListener("input", () => { touche = true; placer(curseur.value); });
+  placer(curseur.value);
+  // Un petit balancement à la première apparition, pour montrer qu'on peut glisser
+  if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const vue = new IntersectionObserver(([e]) => {
+      if (!e.isIntersecting) return;
+      vue.disconnect();
+      const debut = performance.now();
+      const pas = (t) => {
+        if (touche) return;
+        const p = Math.min((t - debut) / 1800, 1);
+        const v = 50 + 22 * Math.sin(p * Math.PI * 2) * (1 - p);
+        curseur.value = v; placer(v);
+        if (p < 1) requestAnimationFrame(pas);
+      };
+      requestAnimationFrame(pas);
+    }, { threshold: 0.6 });
+    vue.observe(comparateur);
+  }
+});
+
 /* ---------- Effets ---------- */
 const calme = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const borne = (v, min, max) => Math.min(max, Math.max(min, v));
