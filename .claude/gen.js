@@ -128,6 +128,11 @@ const quizForfaits = (fr) => {
 const url = (dossier, f) => BASE + (dossier ? dossier + "/" : "") + (f === "index.html" ? "" : f);
 
 function page(L, { fichier, titre, description, corps, tete = "" }) {
+  // Les sections alternent vert et crème ; le kaki foncé ne sert qu'aux textes et aux accents
+  let rang = 0;
+  corps = corps
+    .replace(/class="bloc bloc-(?:sauge|os|encre)/g, () => `class="bloc bloc-${rang++ % 2 ? "os" : "sauge"}`)
+    .replace(/bouton bouton-os/g, "bouton bouton-encre");
   const P = L.prefixe;
   const lien = (f, i) => `<a href="${f}"${f === fichier ? ' aria-current="page"' : ""}>${L.noms[i]}</a>`;
   const demo = (classe) => `<a class="bouton ${classe}" href="contact.html">${L.demo}</a>`;
@@ -146,7 +151,7 @@ function page(L, { fichier, titre, description, corps, tete = "" }) {
   <meta property="og:description" content="${description}">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="${L.og}">
-  <meta name="theme-color" content="#9DA08F">
+  <meta name="theme-color" content="#9CA08F">
   <link rel="icon" type="image/svg+xml" href="${P}assets/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

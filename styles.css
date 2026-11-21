@@ -1,8 +1,10 @@
-/* ZN Digital : trois couleurs, celles du logo (sauge, encre, os).
+/* ZN Digital : les couleurs exactes des logos.
+   Vert (#9CA08F) et crème (#E9E8E6), celles du logo crème sur vert, sont les couleurs principales.
+   Le kaki foncé (#1E1E13) est tertiaire : texte, boutons et petits accents.
    Les nuances plus bas sont des mélanges de ces trois couleurs. */
 :root {
-  --sauge: #9DA08F;
-  --encre: #1C1B10;
+  --sauge: #9CA08F;
+  --encre: #1E1E13;
   --os: #E9E8E6;
 
   --sauge-fonce: color-mix(in srgb, var(--encre) 10%, var(--sauge));
@@ -92,7 +94,7 @@ h3 { font-variation-settings: var(--large); font-weight: 700; font-size: 1.3rem;
   background: var(--sauge);
   transition: box-shadow .25s;
 }
-.entete.defilee { box-shadow: 0 .7rem 1.6rem -1rem rgba(28, 27, 16, .65); }
+.entete.defilee { box-shadow: 0 .7rem 1.6rem -1rem rgba(30, 30, 19, .65); }
 .marque { display: flex; align-items: center; gap: .7rem; text-decoration: none; margin-right: auto; }
 .marque-zn { height: 1.7rem; width: auto; fill: currentColor; }
 .marque-trait { width: 2px; height: 1.9rem; background: currentColor; }
@@ -158,7 +160,7 @@ main > .bloc:last-child { padding-bottom: var(--respire); }
 .ch-fenetre {
   font-size: 2.6cqi;
   background: var(--encre); border-radius: .9em; padding: 0 .4em .4em;
-  box-shadow: 0 2.5rem 5rem -1.5rem rgba(28, 27, 16, .6);
+  box-shadow: 0 2.5rem 5rem -1.5rem rgba(30, 30, 19, .6);
   animation: ch-entree .6s var(--ease) .1s both;
 }
 .ch-barre { display: flex; align-items: center; gap: .38em; padding: .65em .45em; }
@@ -223,7 +225,7 @@ main > .bloc:last-child { padding-bottom: var(--respire); }
   padding: .8em 1.15em; background: var(--os); color: var(--encre);
   font-variation-settings: var(--large); font-weight: 700; font-size: clamp(.85rem, 1.1vw, 1rem);
   clip-path: polygon(0 0, calc(100% - .7em) 0, 100% .7em, 100% 100%, .7em 100%, 0 calc(100% - .7em));
-  filter: drop-shadow(0 .8rem 1.2rem rgba(28, 27, 16, .35));
+  filter: drop-shadow(0 .8rem 1.2rem rgba(30, 30, 19, .35));
   transform: rotate(-3deg);
   animation: ch-tampon .5s cubic-bezier(.3, 1.5, .5, 1) 3.3s both;
 }
@@ -314,7 +316,7 @@ main > .bloc:last-child { padding-bottom: var(--respire); }
 .vitrine img { display: block; width: 100%; height: auto; }
 .ecran {
   background: var(--encre); border-radius: .9rem; padding: 0 .45rem .45rem;
-  box-shadow: 0 2.5rem 5rem -1.5rem rgba(28, 27, 16, .55);
+  box-shadow: 0 2.5rem 5rem -1.5rem rgba(30, 30, 19, .55);
   transform: rotateX(calc(var(--rx, 0) * 1deg)) rotateY(calc(var(--ry, 0) * 1deg));
   transition: transform .35s var(--ease);
 }
@@ -330,7 +332,7 @@ main > .bloc:last-child { padding-bottom: var(--respire); }
 .telephone {
   position: absolute; right: 0; bottom: 0; width: 21%;
   background: var(--encre); border-radius: clamp(.8rem, 2.2vw, 2rem); padding: clamp(.25rem, .6vw, .5rem);
-  box-shadow: 0 2rem 4rem -1rem rgba(28, 27, 16, .65);
+  box-shadow: 0 2rem 4rem -1rem rgba(30, 30, 19, .65);
   transform: translate(calc(var(--ry, 0) * -3px), calc(var(--rx, 0) * 3px));
   transition: transform .35s var(--ease);
 }
@@ -592,7 +594,7 @@ body::before {
     flex-direction: column; align-items: stretch; gap: 0;
     background: var(--sauge); padding: .25rem var(--marge) 1.5rem;
     border-top: 2px solid var(--encre);
-    box-shadow: 0 1.5rem 2rem -1.5rem rgba(28, 27, 16, .6);
+    box-shadow: 0 1.5rem 2rem -1.5rem rgba(30, 30, 19, .6);
   }
   .nav.ouvert { display: flex; }
   .nav a { padding: .85rem 0; font-size: 1.2rem; font-weight: 600; border-bottom: 1px solid var(--sauge-fonce); }
@@ -749,3 +751,52 @@ body::before {
   .faq details[open] .reponse { animation: none; }
   .plan { transition: none; }
 }
+
+/* =====================================================================
+   Palette vert et crème : plus de grands blocs foncés
+   ===================================================================== */
+
+/* Le logo en crème sur le vert, comme le logo d'origine */
+.marque { color: var(--os); }
+.embleme { fill: var(--os); }
+.embleme.sur-encre { fill: var(--sauge); }
+.bloc-sauge .fragment { fill: color-mix(in srgb, var(--os) 16%, var(--sauge)); }
+.bloc-os .fragment { fill: color-mix(in srgb, var(--sauge) 22%, var(--os)); }
+
+/* Textes secondaires sur fond clair */
+.bloc-sauge .intro, .appel .contenant > p, .secteurs-suite { color: var(--encre-doux); }
+.bloc-sauge .puces li::before { background: var(--os); }
+.bloc-os .puces li::before { background: var(--encre); }
+.secteurs > li > p { color: var(--encre-doux); }
+
+/* Hébergement */
+.heberg li { border-top-color: var(--encre); }
+.tarif span, .heberg p { color: var(--encre-doux); }
+
+/* Formulaire sur fond crème */
+input[type="text"], input[type="email"], input[type="tel"], input[type="url"], textarea, select {
+  color: var(--encre); border-color: var(--encre-mi);
+}
+select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M0 0h12L6 8z' fill='%231E1E13'/%3E%3C/svg%3E");
+}
+select option { background: var(--os); color: var(--encre); }
+input:focus-visible, textarea:focus-visible, select:focus-visible {
+  border-color: var(--encre); background-color: color-mix(in srgb, var(--sauge) 22%, var(--os));
+}
+.champ.erreur input, .champ.erreur textarea { border-color: var(--encre); }
+.aide { color: var(--encre); }
+.facultatif, .indice, .envoi-note { color: var(--encre-doux); }
+.choix span { border-color: var(--encre-mi); }
+.choix input:checked + span { background: var(--encre); border-color: var(--encre); color: var(--os); }
+.choix input:focus-visible + span { outline-color: var(--encre); }
+.pastille { box-shadow: 0 0 0 1px var(--encre-mi); }
+.joindre { border-top-color: var(--encre); }
+.joindre dt { color: var(--encre-doux); }
+
+/* Pied de page vert, logo crème */
+.pied { background: var(--sauge); color: var(--encre); border-top: 2px solid var(--os); }
+.pied-marque svg { fill: var(--os); }
+.pied-titre { color: var(--encre); }
+.pied a:hover, .pied a[aria-current="page"], .pied-langues a[aria-current] { color: var(--encre); }
+.pied-bas { border-top-color: color-mix(in srgb, var(--encre) 25%, var(--sauge)); }
