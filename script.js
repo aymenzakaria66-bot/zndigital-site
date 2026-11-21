@@ -130,6 +130,19 @@ if ("IntersectionObserver" in window && !calme) {
   titres.forEach((t) => t.classList.add("vu"));
 }
 
+// Démo de l'accueil : l'animation démarre quand la fenêtre est visible
+const chantier = document.querySelector(".chantier");
+if (chantier) {
+  if ("IntersectionObserver" in window && !calme) {
+    const vue = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) { chantier.classList.add("joue"); vue.disconnect(); }
+    }, { threshold: 0.4 });
+    vue.observe(chantier);
+  } else {
+    chantier.classList.add("joue");
+  }
+}
+
 if (!calme) {
   // Fenêtre du client : inclinaison selon la souris, défilement de la page au survol
   document.querySelectorAll(".vitrine").forEach((vitrine) => {
