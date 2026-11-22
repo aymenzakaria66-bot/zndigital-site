@@ -1075,3 +1075,41 @@ body, .entete, .bloc-sauge { background: var(--clair); }
 @media (max-width: 40rem) {
   .barre-mobile .bouton-os { background-image: linear-gradient(115deg, var(--bronze) 50%, var(--beige) 50.1%); }
 }
+
+/* =====================================================================
+   Palette tirée de l'image de référence (remplace « Crème et bronze »)
+   Lin #E7E2D6 et blanc chaud #F3F1EF en alternance, sauge clair #B2B3A1,
+   sauge moyen #78836E pour les accents, vert forêt #232F24 pour le texte,
+   les boutons et le pied de page. Le logo garde son vert #9CA08F.
+   ===================================================================== */
+:root {
+  --clair: #E7E2D6;
+  --os: #F3F1EF;
+  --beige: #F3F1EF;
+  --encre: #232F24;
+  --olive: #232F24;
+  --olive-survol: #3A4A3B;
+  --sauge-clair: #B2B3A1;
+  --bronze: #78836E;
+  --bronze-survol: #8A9580;
+}
+body, .entete, .bloc-sauge { background: var(--clair); }
+.bloc-os { background: var(--os); }
+@media (max-width: 66rem) { .nav { background: var(--clair); } }
+@media (max-width: 40rem) { .barre-mobile { background: var(--clair); } }
+
+/* Boutons vert forêt, balayage sauge au survol */
+.bouton-encre { color: var(--os); background-image: linear-gradient(115deg, var(--bronze) 50%, var(--encre) 50.1%); }
+
+/* Accents sauge */
+.bandeau { background: var(--sauge-clair); color: var(--encre); }
+.ch-badge, .plan.recommande::before { background: var(--sauge-clair); color: var(--encre); }
+.faq.conversation summary { background: var(--os); }
+.faq.conversation summary:hover { background: color-mix(in srgb, var(--sauge-clair) 45%, var(--os)); }
+.cmpf-oui { background: color-mix(in srgb, var(--sauge-clair) 35%, var(--os)); }
+.note { background: var(--os); }
+.bloc-sauge .fragment { fill: color-mix(in srgb, var(--sauge-clair) 30%, var(--clair)); }
+.bloc-os .fragment { fill: color-mix(in srgb, var(--sauge-clair) 26%, var(--os)); }
+@media (max-width: 40rem) {
+  .barre-mobile .bouton-os { background-image: linear-gradient(115deg, var(--sauge-clair) 50%, var(--os) 50.1%); }
+}
