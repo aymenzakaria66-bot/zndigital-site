@@ -4,6 +4,7 @@ const fs = require("fs");
 const path = require("path");
 const { maquette, champsApercu, apercu } = require("./maquettes.js");
 const { bandeau, rassurance, avantApres, comparatif, ensuite, barreMobile } = require("./extras.js");
+const { illustration, iconiser } = require("./visuels.js");
 const out = process.argv[2];
 
 const BASE = "https://aymenzakaria66-bot.github.io/zndigital-site/";
@@ -138,6 +139,7 @@ function page(L, { fichier, titre, description, corps, tete = "" }) {
     i > 0 && reperes.some((r) => morceau.split("</section>")[0].includes(r))
       ? morceau.replace(/^ class="bloc /, ' class="bloc olive ')
       : morceau).join("<section");
+  corps = iconiser(corps);
   const P = L.prefixe;
   const lien = (f, i) => `<a href="${f}"${f === fichier ? ' aria-current="page"' : ""}>${L.noms[i]}</a>`;
   const demo = (classe) => `<a class="bouton ${classe}" href="contact.html">${L.demo}</a>`;
@@ -164,7 +166,7 @@ function page(L, { fichier, titre, description, corps, tete = "" }) {
   <link rel="stylesheet" href="${P}styles.css">
   <script>document.documentElement.classList.add("js");</script>${tete}
 </head>
-<body>
+<body data-page="${fichier.replace(".html", "")}">
   <a class="skip" href="#contenu">${L.skip}</a>
 
   <svg width="0" height="0" class="defs" aria-hidden="true">
@@ -362,6 +364,7 @@ ${avantApres(fr)}
       ${fragment()}
       <div class="contenant deux">
         <h2>${fr ? "En bref" : "At a glance"}</h2>
+        ${illustration("scene")}
         <div>
           <ul class="puces">
             ${(fr ? [
@@ -435,6 +438,7 @@ ${avantApres(fr)}
     <section class="bloc bloc-os">
       <div class="contenant deux">
         <h2>${fr ? "Notre approche" : "Our approach"}</h2>
+        ${illustration("feuilles")}
         <div class="texte">
           <h3>${fr ? "Essayez avant d'acheter" : "Try before you buy"}</h3>
           <p>${fr ? "La plupart des agences vous demandent de payer avant de voir quoi que ce soit. Nous, on fait l'inverse : on vous montre d'abord un aperçu de votre site, gratuitement. Vous décidez ensuite."
@@ -629,6 +633,7 @@ ${comparatif(fr)}
     <section class="bloc bloc-sauge">
       <div class="contenant deux">
         <h2>${fr ? "Paiement" : "Payment"}</h2>
+        ${illustration("arche")}
         <div>
           <ul class="puces une">
             ${(fr ? [
@@ -712,6 +717,7 @@ ${comparatif(fr)}
     <section class="bloc bloc-sauge">
       <div class="contenant deux">
         <h2>Nafsi</h2>
+        ${illustration("scene")}
         <div class="texte">
           <h3>Portfolio</h3>
           <p>${fr ? "Mise en ligne prochainement." : "Launching soon."}</p>
@@ -763,6 +769,7 @@ ${comparatif(fr)}
 
     <section class="bloc bloc-os">
       <div class="contenant">
+        ${illustration("scene", "illus-cote")}
         <div class="faq conversation">
           ${faqListe(qr)}
         </div>
