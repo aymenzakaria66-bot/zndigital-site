@@ -132,7 +132,8 @@ function page(L, { fichier, titre, description, corps, tete = "" }) {
     .replace(/class="bloc bloc-(?:sauge|os|encre)/g, () => `class="bloc bloc-${rang++ % 2 ? "os" : "sauge"}`)
     .replace(/bouton bouton-os/g, "bouton bouton-encre");
   // Sections mises en valeur en olive profond (étapes, expertise, hébergement, démos, « En bref »)
-  const reperes = ['class="etapes"', 'class="raisons trois"', 'class="heberg"', 'class="secteurs"', 'class="suite"><a class="lien" href="presentation.html"'];
+  // Palette crème et bronze : plus de sections foncées. Remettre les repères ci-dessous pour les réactiver.
+  const reperes = []; // ['class="etapes"', 'class="raisons trois"', 'class="heberg"', 'class="secteurs"', 'class="suite"><a class="lien" href="presentation.html"']
   corps = corps.split("<section").map((morceau, i) =>
     i > 0 && reperes.some((r) => morceau.split("</section>")[0].includes(r))
       ? morceau.replace(/^ class="bloc /, ' class="bloc olive ')
@@ -155,7 +156,7 @@ function page(L, { fichier, titre, description, corps, tete = "" }) {
   <meta property="og:description" content="${description}">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="${L.og}">
-  <meta name="theme-color" content="#F6F4EF">
+  <meta name="theme-color" content="#EFEDE6">
   <link rel="icon" type="image/svg+xml" href="${P}assets/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

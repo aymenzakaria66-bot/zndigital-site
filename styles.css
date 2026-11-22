@@ -1036,3 +1036,42 @@ body, .entete, .bloc-sauge { background: var(--clair); }
 }
 /* Le pied de page kaki se distingue d'une dernière section kaki par un filet vert */
 .pied { border-top: 3px solid var(--sauge); }
+
+/* =====================================================================
+   Palette « Crème et bronze » (remplace « Lin et kaki »)
+   Crème #EFEDE6 et beige #E2DED2 en alternance, bronze #A9824F pour les boutons
+   et les accents, kaki #1E1E13 pour le texte et quelques blocs, vert sauge pour le logo.
+   ===================================================================== */
+:root {
+  --clair: #EFEDE6;
+  --beige: #E2DED2;
+  --bronze: #A9824F;
+  --bronze-survol: #BE9863;
+  --olive: #1E1E13;
+  --olive-survol: #3A3B2E;
+}
+.bloc-os { background: var(--beige); }
+
+/* Boutons principaux en bronze, texte kaki */
+.bouton-encre { color: var(--encre); background-image: linear-gradient(115deg, var(--bronze-survol) 50%, var(--bronze) 50.1%); }
+
+/* Accents bronze */
+.bandeau { background: var(--bronze); color: var(--encre); }
+.bandeau span::after { background: var(--encre); }
+.ch-badge, .plan.recommande::before { background: var(--bronze); color: var(--encre); }
+.bloc-sauge .puces li::before, .bloc-os .puces li::before, .plan.recommande .puces li::before { background: var(--bronze); }
+.etapes li::after { background: var(--bronze); }
+.etapes li::before { color: color-mix(in srgb, var(--encre) calc(var(--f) * 100%), var(--bronze)); }
+.engagement-signature svg, .cmpf-zn svg, .avatar svg { fill: var(--bronze); }
+.cmpf-oui { background: color-mix(in srgb, var(--bronze) 16%, var(--clair)); }
+.cmpf-oui::before { background: var(--bronze); }
+.faq.conversation summary { background: var(--beige); }
+.faq.conversation summary:hover { background: color-mix(in srgb, var(--bronze) 22%, var(--beige)); }
+.note { background: var(--clair); border-left-color: var(--bronze); }
+.bloc-sauge .fragment { fill: color-mix(in srgb, var(--bronze) 12%, var(--clair)); }
+.bloc-os .fragment { fill: color-mix(in srgb, var(--bronze) 14%, var(--beige)); }
+.pied { border-top-color: var(--bronze); }
+.quiz { border-color: var(--bronze); }
+@media (max-width: 40rem) {
+  .barre-mobile .bouton-os { background-image: linear-gradient(115deg, var(--bronze) 50%, var(--beige) 50.1%); }
+}
