@@ -173,7 +173,7 @@ function page(L, { fichier, titre, description, corps, tete = "" }) {
       <span class="marque-nom">Digital</span>
     </a>
     <nav class="nav" id="nav" aria-label="${L.navAria}">
-      ${FICHIERS.slice(1).map((f, i) => lien(f, i + 1)).join("\n      ")}
+      ${FICHIERS.map((f, i) => lien(f, i)).join("\n      ")}
       <a class="bouton bouton-encre nav-cta" href="contact.html">${L.demo}</a>
     </nav>
     <a class="langue" href="${L.autre.chemin(fichier)}" hreflang="${L.autre.code}" lang="${L.autre.code}" aria-label="${L.autre.aria}">${L.autre.court}</a>

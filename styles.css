@@ -979,3 +979,7 @@ body { background: var(--os); }
   .barre-mobile { background: var(--os); }
   .barre-mobile .bouton-os { background-image: linear-gradient(115deg, var(--sauge) 50%, color-mix(in srgb, var(--sauge) 45%, var(--os)) 50.1%); }
 }
+
+/* En-tête : le bouton reste sur une ligne, liens resserrés sur les écrans moyens */
+.entete-cta { white-space: nowrap; }
+@media (max-width: 80rem) { .nav { gap: 1.1rem; } .entete { gap: 1.4rem; } }
