@@ -31,7 +31,8 @@ const DESSINS = {
       <path class="il-sol" d="M8 212h204"/>
     </svg>`,
 };
-const illustration = (nom, classe = "") => `<div class="illus${classe ? " " + classe : ""}">${DESSINS[nom]}</div>`;
+// Illustrations retirées à la demande du client (ne faisaient pas assez professionnel).
+const illustration = () => "";
 
 /* ---------- Icônes au trait (24 x 24) ---------- */
 const TRACES = {
