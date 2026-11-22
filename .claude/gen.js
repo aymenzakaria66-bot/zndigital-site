@@ -155,7 +155,7 @@ function page(L, { fichier, titre, description, corps, tete = "" }) {
   <meta property="og:description" content="${description}">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="${L.og}">
-  <meta name="theme-color" content="#F3F2EE">
+  <meta name="theme-color" content="#F6F4EF">
   <link rel="icon" type="image/svg+xml" href="${P}assets/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

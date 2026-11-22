@@ -1022,3 +1022,17 @@ body, .entete, .bloc-sauge { background: var(--clair); }
 .bloc.olive .note { color: var(--encre); background: var(--clair); border-left-color: var(--sauge); }
 .bloc.olive .bouton-encre { color: var(--encre); background-image: linear-gradient(115deg, var(--sauge) 50%, var(--clair) 50.1%); }
 .bloc.olive .mq { box-shadow: 0 1.6rem 3rem -1.2rem rgba(0, 0, 0, .5); }
+
+/* =====================================================================
+   Palette « Lin et kaki » (remplace « Olive profond »)
+   Lin #F6F4EF en base, crème du logo une section sur deux,
+   grands blocs et boutons kaki presque noir #1E1E13, vert sauge en touches.
+   (Les variables --olive* gardent leur nom mais portent maintenant le kaki.)
+   ===================================================================== */
+:root {
+  --clair: #F6F4EF;
+  --olive: #1E1E13;
+  --olive-survol: #3A3B2E;
+}
+/* Le pied de page kaki se distingue d'une dernière section kaki par un filet vert */
+.pied { border-top: 3px solid var(--sauge); }
