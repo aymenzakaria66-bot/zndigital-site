@@ -131,6 +131,12 @@ function page(L, { fichier, titre, description, corps, tete = "" }) {
   corps = corps
     .replace(/class="bloc bloc-(?:sauge|os|encre)/g, () => `class="bloc bloc-${rang++ % 2 ? "os" : "sauge"}`)
     .replace(/bouton bouton-os/g, "bouton bouton-encre");
+  // Sections mises en valeur en olive profond (étapes, expertise, hébergement, démos, « En bref »)
+  const reperes = ['class="etapes"', 'class="raisons trois"', 'class="heberg"', 'class="secteurs"', 'class="suite"><a class="lien" href="presentation.html"'];
+  corps = corps.split("<section").map((morceau, i) =>
+    i > 0 && reperes.some((r) => morceau.split("</section>")[0].includes(r))
+      ? morceau.replace(/^ class="bloc /, ' class="bloc olive ')
+      : morceau).join("<section");
   const P = L.prefixe;
   const lien = (f, i) => `<a href="${f}"${f === fichier ? ' aria-current="page"' : ""}>${L.noms[i]}</a>`;
   const demo = (classe) => `<a class="bouton ${classe}" href="contact.html">${L.demo}</a>`;
@@ -149,7 +155,7 @@ function page(L, { fichier, titre, description, corps, tete = "" }) {
   <meta property="og:description" content="${description}">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="${L.og}">
-  <meta name="theme-color" content="#E9E8E6">
+  <meta name="theme-color" content="#F3F2EE">
   <link rel="icon" type="image/svg+xml" href="${P}assets/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

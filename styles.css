@@ -983,3 +983,42 @@ body { background: var(--os); }
 /* En-tête : le bouton reste sur une ligne, liens resserrés sur les écrans moyens */
 .entete-cta { white-space: nowrap; }
 @media (max-width: 80rem) { .nav { gap: 1.1rem; } .entete { gap: 1.4rem; } }
+
+/* =====================================================================
+   Palette « Olive profond »
+   Crème lumineuse en base, olive foncé (vert sauge assombri) pour les sections
+   mises en valeur et les boutons, vert sauge en touches, kaki pour le texte.
+   ===================================================================== */
+:root {
+  --clair: #F3F2EE;
+  --olive: #3B3F31;
+  --olive-survol: #50553F;
+  --olive-doux: color-mix(in srgb, var(--clair) 74%, var(--olive));
+}
+body, .entete, .bloc-sauge { background: var(--clair); }
+.bloc-os { background: var(--os); }
+@media (max-width: 66rem) { .nav { background: var(--clair); } }
+@media (max-width: 40rem) { .barre-mobile { background: var(--clair); } }
+
+/* Boutons principaux en olive */
+.bouton-encre { color: var(--clair); background-image: linear-gradient(115deg, var(--olive-survol) 50%, var(--olive) 50.1%); }
+
+/* Accents en olive */
+.bandeau, .engagement, .plan.recommande, .faq .reponse p, .avatar, .cmpf-zn { background-color: var(--olive); }
+.bandeau, .engagement, .plan.recommande, .faq .reponse p, .cmpf-zn { color: var(--clair); }
+.choix input:checked + span, .quiz .choix input:checked + span { background: var(--olive); border-color: var(--olive); color: var(--clair); }
+
+/* Sections olive */
+.bloc.olive { background: var(--olive); color: var(--clair); }
+.bloc.olive .intro, .bloc.olive .raisons p, .bloc.olive .etapes p,
+.bloc.olive .secteurs > li > p, .bloc.olive .tarif span, .bloc.olive .heberg p,
+.bloc.olive .mention, .bloc.olive .secteurs-suite { color: var(--olive-doux); }
+.bloc.olive .puces li::before { background: var(--sauge); }
+.bloc.olive .heberg li { border-top-color: var(--sauge); }
+.bloc.olive .fragment { fill: color-mix(in srgb, var(--clair) 7%, var(--olive)); }
+.bloc.olive .etapes li { border-top-color: color-mix(in srgb, var(--clair) 18%, var(--olive)); }
+.bloc.olive .etapes li::after { background: var(--clair); }
+.bloc.olive .etapes li::before { color: color-mix(in srgb, var(--clair) calc(var(--f) * 100%), var(--sauge)); }
+.bloc.olive .note { color: var(--encre); background: var(--clair); border-left-color: var(--sauge); }
+.bloc.olive .bouton-encre { color: var(--encre); background-image: linear-gradient(115deg, var(--sauge) 50%, var(--clair) 50.1%); }
+.bloc.olive .mq { box-shadow: 0 1.6rem 3rem -1.2rem rgba(0, 0, 0, .5); }
